@@ -7,5 +7,5 @@ function loadTemplate(name) {
 		load();
 	};
 
-	addStylesheet(`./${name}/styles.css`);
+	addStylesheet(`../templates/${name}/styles.css`);
 }
