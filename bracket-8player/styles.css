@@ -1,0 +1,41 @@
+* {
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #111;
+    overflow: hidden;
+}
+
+.name,
+.score,
+.entry {
+    position: absolute;
+    display: inline-block;
+}
+
+.name {
+    width: 375px;
+    height: 51px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 12px;
+    font-size: 35px;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95px;
+    height: 51px;
+    color: #FFF;
+    font-size: 45px;
+}
+
+span {
+    white-space: pre;
+}
