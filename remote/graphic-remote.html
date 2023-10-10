@@ -24,20 +24,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SheetOnBG - Template</title>
+        <title>Sheet to HTML - Template</title>
         <meta charset="utf-8" />
 
-        <!-- Link in a Google Font like so -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bellefair" />
-
-        <link rel="stylesheet" href="./styles.css" />
-        <script type="text/javascript" src="./GoogleSheetToJS.js"></script>
-        <script type="text/javascript" src="./creds.js"></script>
-        <script type="text/javascript" src="./helpers.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script type="text/javascript" src="../common/creds.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/common/GoogleSheetToJS.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/common/helpers.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/common/styles.css" />
         <style id="customStyles">
         </style>
     </head>
+
     <body>
         <div id="container">
             <img id="bg" />
@@ -45,5 +43,6 @@
             <div id="errors">&nbsp;</div>
         </div>
     </body>
-    <script type="text/javascript" src="./graphic.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/common/graphic.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/remote/remote-template-loader.js"></script>
 </html>

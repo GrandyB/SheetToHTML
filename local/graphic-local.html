@@ -24,18 +24,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sheet to HTML - Template</title>
+        <title>SheetOnBG - Template</title>
         <meta charset="utf-8" />
 
-        <script type="text/javascript" src="./creds.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/GoogleSheetToJS.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/helpers.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/styles.css" />
+        <link rel="stylesheet" href="../common/styles.css" />
+        <script type="text/javascript" src="../common/GoogleSheetToJS.js"></script>
+        <script type="text/javascript" src="../common/creds.js"></script>
+        <script type="text/javascript" src="../common/helpers.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
         <style id="customStyles">
         </style>
     </head>
-
     <body>
         <div id="container">
             <img id="bg" />
@@ -43,5 +42,6 @@
             <div id="errors">&nbsp;</div>
         </div>
     </body>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/graphic.js"></script>
+    <script type="text/javascript" src="../common/graphic.js"></script>
+    <script type="text/javascript" src="./local-template-loader.js"></script>
 </html>
