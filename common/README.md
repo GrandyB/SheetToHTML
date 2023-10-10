@@ -8,20 +8,6 @@ In theory, everything's done for you - templates ready to use, you just put your
 1. Download this repository as a .zip and extract somewhere.
 1. Open '/common/creds.js' and insert your Google Sheets API Key (see instructions below if you don't have one)
 
-# Google Sheets API key
-SheetToHTML uses the Google Sheets v4 API; unlike previous version of the API, this one requires the use of an API key that you have to generate using Google's developer console.
-To do this, you can either create a project and then enable the Google Sheets API on that project _or_ search for the API and enable it (which will automatically create you a project).
-
-1. Go to https://console.developers.google.com/
-1. Create a new project; this can be done in multiple ways but here's one:
-    1. In the upper left 'Select a project' drop down, open it up and use 'New Project'
-    1. Give it a name (`SheetToHTML-integration` ?) and create it (this may take a moment)
-1. In the top-middle search bar, search for 'Google Sheets API', navigate to that and press the 'Enable' button, then go back to your project
-1. Navigate through 'Credentials' in the left-side menu, click 'Create Credentials' at the top and choose 'API key'
-
-It should now display an API key for you to then use in your application! It's important to keep this secure, so whenever sharing configs, ensure you remove your apiKey.
-It is advised to then 'restrict' that key to the sheets API - can do that through the key's settings easily at any time.
-
 # Usage
 
 SheetToHTML uses a central controller file, in combination with pairs of js and css files as templates, and very specific layouts that must be used in your Google Sheet for the templates to work.
@@ -50,6 +36,20 @@ The program has two modes - 'remote' and 'local'.
 How to choose?
 - If you're only interested in using the official templates, use the remote version, it's simpler and is likely to stay up to date
 - If you want to create your own templates, use the local version, placing new templates into `./templates/` and refer to them in the same way as any other
+
+# Google Sheets API key
+SheetToHTML uses the Google Sheets v4 API; unlike previous version of the API, this one requires the use of an API key that you have to generate using Google's developer console.
+To do this, you can either create a project and then enable the Google Sheets API on that project _or_ search for the API and enable it (which will automatically create you a project).
+
+1. Go to https://console.developers.google.com/
+1. Create a new project; this can be done in multiple ways but here's one:
+    1. In the upper left 'Select a project' drop down, open it up and use 'New Project'
+    1. Give it a name (`SheetToHTML-integration` ?) and create it (this may take a moment)
+1. In the top-middle search bar, search for 'Google Sheets API', navigate to that and press the 'Enable' button, then go back to your project
+1. Navigate through 'Credentials' in the left-side menu, click 'Create Credentials' at the top and choose 'API key'
+
+It should now display an API key for you to then use in your application! It's important to keep this secure, so whenever sharing configs, ensure you remove your apiKey.
+It is advised to then 'restrict' that key to the sheets API - can do that through the key's settings easily at any time.
 
 # License
 
