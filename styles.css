@@ -20,3 +20,8 @@ html, body {
 	justify-content: center;
 	align-items: center;
 }
+.err {
+	color: #A00;
+	font-family: Verdana;
+	font-size: large;
+}
