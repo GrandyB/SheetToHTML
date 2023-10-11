@@ -24,17 +24,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SheetOnBG - Template</title>
+        <title>Sheet to HTML - Template</title>
         <meta charset="utf-8" />
 
-        <link rel="stylesheet" href="../common/styles.css" />
-        <script type="text/javascript" src="../common/GoogleSheetToJS.js"></script>
-        <script type="text/javascript" src="../common/creds.js"></script>
-        <script type="text/javascript" src="../common/helpers.js"></script>
-        <script type="text/javascript" src="../common/handlebars.js"></script>
+        <script type="text/javascript">
+            class Config {
+                static getApiKey() { return "INSERT_YOUR_GOOGLE_SHEETS_API_KEY_HERE"; }
+            }
+        </script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/src/common/GoogleSheetToJS.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/src/common/helpers.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/src/common/styles.css" />
         <style id="customStyles">
         </style>
     </head>
+
     <body>
         <div id="container">
             <img id="bg" />
@@ -42,18 +47,6 @@
             <div id="errors">&nbsp;</div>
         </div>
     </body>
-    <script type="text/javascript">
-        function loadTemplate(name) {
-            console.log(`Loading template: '${name}'`);
-            var scriptElement = document.createElement("script");
-            scriptElement.src = `../templates/${name}/script.js`;
-            document.head.appendChild(scriptElement);
-            scriptElement.onload = function () {
-                load();
-            };
-
-            addStylesheet(`../templates/${name}/styles.css`);
-        }
-    </script>
-    <script type="text/javascript" src="../common/graphic.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/src/remote-template-loader.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/src/common/graphic.js"></script>
 </html>
