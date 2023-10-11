@@ -29,6 +29,11 @@ function getAndCheckURLParam(param) {
 	}
 	return p;
 }
+function buildFontCSS(param) {
+	
+	var cssRule = `* { font-family: '${decodeURIComponent(font)}'; ${colorCss}}`;
+	styleTag.appendChild(document.createTextNode(cssRule));
+}
 
 const tabName = getAndCheckURLParam("tab");
 const spreadsheetId = getAndCheckURLParam("id");
@@ -39,14 +44,22 @@ const autoUpdate = hasURLParam("update");
 const font = getURLParam("font");
 const color = getURLParam("color");
 
+var customCss = [];
 if (font) {
-	console.log(`Adding font: '{font}'`);
+	console.log(`Adding font from param: '{font}'`);
 	addStylesheet(`https://fonts.googleapis.com/css?family=${font}`);
-	var styleTag = document.getElementById("customStyles");
-	var colorCss = color ? `color: #${color};` : "";
-	var cssRule = `* { font-family: '${decodeURIComponent(font)}'; ${colorCss}}`;
-	styleTag.appendChild(document.createTextNode(cssRule));
+	var split = font.split(":");
+	if (split.length > 1) {
+		// Font includes a weight component, e.g. Rajdhani:700
+		customCss.push(`font-weight: ${decodeURIComponent(split[1])};`);
+	}
+	customCss.push(`font-family: ${decodeURIComponent(split[0])};`);
 }
+if (color) {
+	customCss.push(`color: #${color};`);
+}
+
+if (customCss.length !== 0) document.getElementById("customStyles").appendChild(document.createTextNode(`* { ${customCss.join(" ")} }`));
 
 if (tabName && spreadsheetId && imgCell && template) {
 	document.getElementById("bg").id = imgCell;

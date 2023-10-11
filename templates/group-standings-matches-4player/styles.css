@@ -1,0 +1,92 @@
+* {
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #111;
+    overflow: hidden;
+}
+
+/* Position tester. */
+/*
+.name,
+.score,
+.table-inner > div {
+    /*background-color: #0f0;
+}
+*/
+
+.name,
+.score,
+.matchup,
+.table-row {
+    position: absolute;
+    display: inline-block;
+}
+
+.table-inner {
+    position: relative;
+    width: 100%;
+    height: 59px;
+}
+.table-inner > div {
+    position: absolute;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 12px;
+    font-size: 35px;
+    height: 100%;
+}
+.table-inner .table-name {
+    width: 579px;
+    top: 0;
+    left: 0;
+}
+.table-inner .table-col1 {
+    width: 104px;
+    left: 586px;
+}
+.table-inner .table-col2 {
+    width: 110px;
+    left: 697px;
+}
+.table-inner .table-col3 {
+    width: 99px;
+    left: 813px;
+    font-size: 45px;
+    color: #000;
+}
+
+.matchup {
+    height: 60px;
+}
+.name {
+    width: 415px;
+    height: 100%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 12px;
+    font-size: 35px;
+}
+.score {
+    width: 74px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 45px;
+}
+.score > span.value {
+    line-height: 59px;
+}
+
+span {
+    white-space: pre;
+    line-height: 1;
+}
