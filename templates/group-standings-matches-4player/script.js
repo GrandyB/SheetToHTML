@@ -26,11 +26,10 @@ function load() {
     return thing + "px";
   }
 
+  // data = { left, top, cell }
   function createMatchup(data) {
     var dom = document.getElementById("main");
 
-    data.leftOffset = px(leftOffset);
-    data.topOffset = px(topOffset);
     data.left = px(data.left);
     data.top = px(data.top);
 
@@ -69,8 +68,6 @@ function load() {
   function createTableRow(data) {
     var dom = document.getElementById("main");
 
-    data.leftOffset = px(leftOffset);
-    data.topOffset = px(topOffset);
     data.left = px(data.left);
     data.top = px(data.top);
 
