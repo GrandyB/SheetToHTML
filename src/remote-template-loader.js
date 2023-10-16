@@ -23,9 +23,7 @@
 
 function loadTemplate(name) {
 	console.log(`Loading template: '${name}'`);
-	var scriptElement = document.createElement("script");
-	scriptElement.src = `https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/templates/${name}/script.js`;
-	document.head.appendChild(scriptElement);
+	var scriptElement = loadScript(`https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/templates/${name}/script.js`);
 	scriptElement.onload = function () {
 		load();
 	};

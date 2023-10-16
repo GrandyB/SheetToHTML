@@ -28,6 +28,7 @@ class Helpers {
    * @return {string} a new cell reference, e.g. "I4" (using example parameters above)
    */
   static relativeColumn(cellReference, offset) {
+    if (offset == 0) return cellReference;
     const column = cellReference.replace(/\d+/g, "");
     const columnIndex = this.columnToIndex(column);
     const newIndex = columnIndex + offset;
@@ -43,6 +44,7 @@ class Helpers {
    * @return {string} a new cell reference, e.g. "G6" (using example parameters above)
    */
   static relativeRow(cellReference, offset) {
+    if (offset == 0) return cellReference;
     const row = parseInt(cellReference.replace(/\D+/g, ""));
     const newRow = row + offset;
     const column = cellReference.replace(/\d+/g, "");

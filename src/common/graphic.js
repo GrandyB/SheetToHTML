@@ -53,9 +53,14 @@ function getAndCheckURLParam(param) {
 	return p;
 }
 function buildFontCSS(param) {
-	
 	var cssRule = `* { font-family: '${decodeURIComponent(font)}'; ${colorCss}}`;
 	styleTag.appendChild(document.createTextNode(cssRule));
+}
+function loadScript(url) {
+	var scriptElement = document.createElement("script");
+	scriptElement.src = url;
+	document.head.appendChild(scriptElement);
+	return scriptElement;
 }
 
 const tabName = getAndCheckURLParam("tab");

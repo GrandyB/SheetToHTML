@@ -22,65 +22,32 @@
 // SOFTWARE.
 
 function load() {
-  var leftOffset = 394; // distance from name to score
-  var topOffset = 76; // distance from top of first name to top of second name
+  var dom = document.getElementById("main");
 
-  function px(thing) {
-    return thing + "px";
+  var rowAttributes = { height: 51, class: 'padding', alignment: 'flex-center-center', style: 'font-size: 35px;' };
+  var rowName = { ...rowAttributes, style: rowAttributes.style + "color: #fff;"};
+  var rowScore = { ...rowAttributes, style: rowAttributes.style + "color: #000;"};
+
+  var cols = [
+      { width: 384, ...rowName },
+      { width: 95, ...rowScore }
+  ];
+
+  function matchup(cellRef, left, top) {
+      dom.innerHTML += table(cellRef, 2, { left: left, top: top}, 10, 76, cols);
   }
 
-  // data = { left, top, cell }
-  function createItem(data) {
-    var dom = document.getElementById("main");
+  var left = 125;
+  matchup('B2', left, 255);
+  matchup('B6', left, 438);
+  matchup('B10', left, 627);
+  matchup('B14', left, 810);
 
-    data.leftOffset = px(leftOffset);
-    data.topOffset = px(topOffset);
-    data.left = px(data.left);
-    data.top = px(data.top);
+  left = 714;
+  matchup('E4', left, 346);
+  matchup('E12', left, 720);
 
-    data.name1Data = data.cell;
-    data.score1Data = Helpers.relativeColumn(data.cell, 1);
-    data.name2Data = Helpers.relativeRow(data.cell, 1);
-    data.score2Data = Helpers.relativeColumn(Helpers.relativeRow(data.cell, 1), 1);
-
-    console.debug(data);
-
-    var item = Handlebars.compile(`
-        <div class="entry" style="left: {{left}}; top: {{top}}">
-            <div class="name" style="left: 0; top: 0">
-                <span class="value" id="{{name1Data}}"></span>
-            </div>
-            <div class="score" style="left: {{leftOffset}}; top: 0">
-                <span class="value" id="{{score1Data}}"></span>
-            </div>
-            <div class="name" style="left: 0; top: {{topOffset}}">
-                <span class="value" id="{{name2Data}}"></span>
-            </div>
-            <div class="score" style="left: {{leftOffset}}; top: {{topOffset}}">
-                <span class="value" id="{{score2Data}}"></span>
-            </div>
-        </div>
-    `);
-
-    const html = item(data);
-    dom.innerHTML += html;
-  }
-
-  // Use a variable to shift and re-use the 'left' amount per round
-  var leftAmt = 125;
-  // Ro16
-  createItem({ left: leftAmt, top: 255, cell: "B2" });
-  createItem({ left: leftAmt, top: 438, cell: "B6" });
-  createItem({ left: leftAmt, top: 627, cell: "B10" });
-  createItem({ left: leftAmt, top: 810, cell: "B14" });
-
-  // Ro8
-  leftAmt = 714;
-  createItem({ left: leftAmt, top: 346, cell: "E4" });
-  createItem({ left: leftAmt, top: 720, cell: "E12" });
-
-  // Semis
-  leftAmt = 1300;
-  createItem({ left: leftAmt, top: 533, cell: "H8" });
-  createItem({ left: leftAmt, top: 802, cell: "H12" });
+  left = 1300;
+  matchup('H8', left, 533);
+  matchup('H12', left, 802);
 }
