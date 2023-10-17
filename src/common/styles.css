@@ -2,6 +2,9 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
+body {
+    overflow: hidden;
+}
 #container {
 	position: relative;
 	width: 100%;
@@ -24,4 +27,36 @@ html, body {
 	color: #A00;
 	font-family: Verdana;
 	font-size: large;
+}
+* {
+	box-sizing: border-box;
+}
+
+/* Template core. */
+.absolute {
+	position: absolute;
+	display: inline-block;
+}
+
+/* Template parts. */
+.flex-center-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-center-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.flex-center-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.padding {
+	padding: 5px 12px;
+}
+.table-inner {
+    position: relative;
 }

@@ -23,31 +23,41 @@
 
 function load() {
     var dom = document.getElementById("main");
-
-    var rowAttributes = { height: 59, class: 'padding', alignment: 'flex-center-center', style: 'font-size: 35px;' };
-    var rowWhite = { ...rowAttributes, style: rowAttributes.style + "color: #fff;"};
-    var rowBlack = { ...rowAttributes, style: rowAttributes.style + "color: #000;"};
-
-    // Standings
-    dom.innerHTML += table('B2', 4, { left: 939, top: 135}, 6, 66, [
-        { width: 579, ...rowWhite },
-        { width: 104, ...rowWhite },
-        { width: 110, ...rowWhite },
-        { width: 99, ...rowBlack }
-    ]);
-
-    var left = 849;
-    var matchupColumns = [
-        { width: 415, ...rowWhite },
-        { width: 74, ...rowBlack },
-        { width: 74, ...rowBlack },
-        { width: 415, ...rowWhite }
+  
+    var rowAttributes = { height: 37, class: 'padding', style: 'font-size: 25px;' };
+    var rowName = { ...rowAttributes, style: rowAttributes.style + "color: #fff;", alignment: 'flex-center-left'};
+    var rowScore = { ...rowAttributes, style: rowAttributes.style + "color: #000;", alignment: 'flex-center-center'};
+  
+    var cols = [
+        { width: 268, ...rowName },
+        { width: 60, ...rowScore }
     ];
+  
+    function matchup(cellRef, left, top) {
+        dom.innerHTML += table(cellRef, 2, { left: left, top: top}, 12, 53, cols);
+    }
+  
+    var left = 103;
+    matchup('B2', left, 87);
+    matchup('B6', left, 213);
+    matchup('B10', left, 338);
+    matchup('B14', left, 466);
+    matchup('B18', left, 591);
+    matchup('B22', left, 717);
+    matchup('B26', left, 842);
+    matchup('B30', left, 969);
+  
+    left = 560;
+    matchup('E4', left, 150);
+    matchup('E12', left, 402);
+    matchup('E20', left, 654);
+    matchup('E28', left, 906);
+  
+    left = 1017;
+    matchup('H8', left, 276);
+    matchup('H24', left, 781);
 
-    // Round 1
-    dom.innerHTML += table('M2', 2, { left: left, top: 516}, 7, 66, matchupColumns);
-    // Round 2
-    dom.innerHTML += table('M6', 2, { left: left, top: 707}, 7, 66, matchupColumns);
-    // Round 3
-    dom.innerHTML += table('M10', 2, { left: left, top: 898}, 7, 66, matchupColumns);
+    left = 1474;
+    matchup('K16', left, 529);
+    matchup('K21', left, 741);
 }

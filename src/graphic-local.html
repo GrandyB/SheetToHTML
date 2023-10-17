@@ -29,9 +29,10 @@
         <meta charset="utf-8" />
 
         <script type="text/javascript" src="./common/creds.js"></script>
+        <script type="text/javascript" src="./common/handlebars.js"></script>
         <script type="text/javascript" src="./common/GoogleSheetToJS.js"></script>
         <script type="text/javascript" src="./common/helpers.js"></script>
-        <script type="text/javascript" src="./common/handlebars.js"></script>
+        <script type="text/javascript" src="./common/partials.js"></script>
         <link rel="stylesheet" href="./common/styles.css" />
         <style id="customStyles">
         </style>
@@ -46,9 +47,7 @@
     <script type="text/javascript">
         function loadTemplate(name) {
             console.log(`Loading template: '${name}'`);
-            var scriptElement = document.createElement("script");
-            scriptElement.src = `../templates/${name}/script.js`;
-            document.head.appendChild(scriptElement);
+            var scriptElement = loadScript(`../templates/${name}/script.js`);
             scriptElement.onload = function () {
                 load();
             };
