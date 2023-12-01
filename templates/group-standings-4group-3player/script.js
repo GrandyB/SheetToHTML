@@ -24,7 +24,7 @@
 function load() {
     var dom = document.getElementById("main");
 
-    var rowAttributes = { height: 40, class: 'padding', alignment: 'flex-center-center', style: 'font-size: 25px; font-weight: 900;' };
+    var rowAttributes = { height: 40, class: 'padding', alignment: 'flex-center-center', style: 'font-size: 22px; font-weight: 900;' };
     var rowWhite = { ...rowAttributes, style: rowAttributes.style + "color: #fff;"};
     var rowPurple = { ...rowAttributes, style: rowAttributes.style + "color: #381D64;"};
 
