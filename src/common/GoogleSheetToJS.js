@@ -93,6 +93,27 @@ class GoogleSheetToJS {
                                 outputElement.innerHTML = cellContent;
                             }
                         }
+
+                        const isEmpty = !cellContent || cellContent.trim() === "" || cellContent === '#N/A';
+                        var requires = document.querySelectorAll(`[requires-non-empty="${cellRef}"]`);
+                        var disp = isEmpty ? "none" : "unset";
+                        for(var r of requires) {
+                            console.debug(`Found ${requires.length} cells requiring a non-empty ${cellRef}. Setting 'display: ${disp}'`);
+                            r.style.display = disp;
+                            if (isEmpty) {
+                                r.classList.add("empty");
+                            } else {
+                                r.classList.remove("empty");
+                            }
+                        }
+                        if (!isEmpty) {
+                            var classList = cellContent.trim().split(" ");
+                            var applyAsClasses = document.querySelectorAll(`[apply-as-classes="${cellRef}"]`);
+                            for(var e of applyAsClasses) {
+                                classList.forEach(c => e.classList.add(c));
+                            }
+                        }
+
                     }
                 });
 

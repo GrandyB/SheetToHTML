@@ -37,7 +37,7 @@ Handlebars.registerHelper('concatenate', function(initial, additional) {
 // "box" - a div with a span inside; expected data e.g: { class: "one two", style: "left: 200px; top: 100px" }
 Handlebars.registerPartial("box", `
     <div class="{{class}}" style="{{style}}">
-        <span id="{{cell}}"></span>
+        {{{content}}}
     </div>
 `);
 const partialBox = Handlebars.compile(`{{> box}}`);
@@ -95,7 +95,10 @@ function relativeTableRow(cellRef, position, columnSpacing, cellData) {
         cell.class = data.alignment ? data.alignment : 'flex-center-left'; // default
         cell.class = data.class ? `${data.class} ${cell.class}` : cell.class;
 
+        cell.content = data.image ? `<img id="${cell.cell}"/>` : `<span id="${cell.cell}"></span>`;
+
         cells.push(cell);
+        console.debug(cell);
         previousCellLeft = previousCellLeft + data.width + columnSpacing;
     }
     newData.cells = cells;
