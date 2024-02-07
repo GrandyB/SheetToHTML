@@ -55,6 +55,7 @@ class Helpers {
   // // Helper function to convert column indices to letters
   static indexToColumn(column) {
     var temp, letter = '';
+    column += 1;
     while (column > 0) {
       temp = (column - 1) % 26;
       letter = String.fromCharCode(temp + 65) + letter;
@@ -65,7 +66,7 @@ class Helpers {
 
   // Helper function to convert column letters to indices
   static columnToIndex(letter) {
-    var column = 0, length = letter.length;
+    var column = -1, length = letter.length;
     for (var i = 0; i < length; i++) {
       column += (letter.charCodeAt(i) - 64) * Math.pow(26, length - i - 1);
     }

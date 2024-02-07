@@ -76,7 +76,7 @@ class GoogleSheetToJS {
                 // Populate a list of {ref, value} entries, from the sheet data
                 for (let row = 0; row < values.length; row++) {
                   for (let col = 0; col < values[row].length; col++) {
-                    const cellRef = `${Helpers.indexToColumn(col + 1)}${(row + 1)}`;
+                    const cellRef = `${Helpers.indexToColumn(col)}${(row + 1)}`;
                     entry.push({
                       ref: cellRef,
                       value: values[row][col]
