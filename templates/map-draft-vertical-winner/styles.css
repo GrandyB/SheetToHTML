@@ -50,7 +50,7 @@
     box-shadow: inset 0 5px 25px rgba(230,150,18,1);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    animation: flash 1s linear infinite alternate;
+    animation: flash 1.25s linear infinite alternate;
 }
 .map-entry:not(.Past):not(.Current) img {
     opacity: 0.4;
@@ -95,7 +95,7 @@
     opacity: 0;
 }
 .map-entry.Current .map-name.empty::before {
-    animation: flash 1s linear infinite alternate;
+    animation: flash 1.25s linear infinite alternate;
 }
 
 .winner-name {
