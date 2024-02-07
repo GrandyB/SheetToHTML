@@ -71,6 +71,7 @@ const template = getAndCheckURLParam("template");
 const autoUpdate = hasURLParam("update");
 const font = getURLParam("font");
 const color = getURLParam("color");
+const fadeIn = hasURLParam("fadeIn");
 
 var customCss = [];
 if (font) {
@@ -91,7 +92,6 @@ if (customCss.length !== 0) document.getElementById("customStyles").appendChild(
 
 if (tabName && spreadsheetId && imgCell && template) {
 	document.getElementById("bg").id = imgCell;
-	loadTemplate(template);
 
 	var sheets = new GoogleSheetToJS(
 		Config.getApiKey(),
@@ -99,13 +99,25 @@ if (tabName && spreadsheetId && imgCell && template) {
 		tabName,
 		5000
 	);
-	if (autoUpdate) {
-		console.log(
-			'Automatic data updating enabled (remove "update" from URL to turn off)'
-		);
-		sheets.updateLoop();
-	} else {
-		console.log('Data will not auto-update (add "update" to URL to turn on)');
-		sheets.update();
+
+	if (fadeIn) {
+		document.getElementById('main').classList.add("hidden");
 	}
+
+	loadTemplate(template).then(() => {
+		if (autoUpdate) {
+			console.log(
+				'Automatic data updating enabled (remove "update" from URL to turn off)'
+			);
+			sheets.updateLoop();
+		} else {
+			console.log('Data will not auto-update (add "update" to URL to turn on)');
+			sheets.update();
+		}
+		if (fadeIn) {
+			setTimeout(() => document.getElementById('main').classList.remove("hidden"), 1000);
+		}
+	}).catch(error => {
+        console.error('Failed to load template:', error);
+    });
 }

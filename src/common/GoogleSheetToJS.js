@@ -38,6 +38,7 @@ class GoogleSheetToJS {
 
         // 'cellValues' is our cache of cell ids to their content, e.g. "C3" => "Test value"
         this.cellValues = new Map();
+        this.firstRun = true;
     }
 
     /*
@@ -56,12 +57,23 @@ class GoogleSheetToJS {
     }
 
     update() {
+        if (this.firstRun) {
+            // Cache ID'd elements' "class" attribute into a "base-class" attribute
+            var elements = document.querySelectorAll(`#main *[apply-as-classes]:not([apply-as-classes=""])`);
+            for (var e of elements) {
+                var classList = e.getAttribute("class");
+                e.setAttribute("base-classes", classList ? classList : "");
+            }
+            this.firstRun = false;
+        }
+
         fetch(this.url)
             .then(this.handleErrors)
             .then(res => res.json())
             .then((data) => {
                 var values = data.values;
                 var entry = [];
+                // Populate a list of {ref, value} entries, from the sheet data
                 for (let row = 0; row < values.length; row++) {
                   for (let col = 0; col < values[row].length; col++) {
                     const cellRef = String.fromCharCode(65 + col) + (row + 1);
@@ -72,55 +84,87 @@ class GoogleSheetToJS {
                   }
                 }
 
-                let that = this;
-                entry.forEach(function(e, i){
+                for(var e of entry) {
                     let cellRef = e.ref;
                     let cellContent = e.value;
+                    const isEmpty = !cellContent || cellContent.trim() === "" || cellContent === '#N/A';
 
-                    let existing = that.cellValues.get(cellRef);
+                    let existing = this.cellValues.get(cellRef);
                     if (existing == null || existing !== cellContent) {
                         // Only update document content if cells have changed values
                         console.debug(cellRef + " has changed; '" + existing + "' -> '" + cellContent + "'");
-                        that.cellValues.set(cellRef, cellContent);
+                        this.cellValues.set(cellRef, cellContent);
 
-                        // Set the element
-                        var outputElement = document.getElementById(cellRef);
-                        if (outputElement != null) {
-                            if (outputElement.nodeName.toLowerCase() === 'img') {
-                                outputElement.src = cellContent.trim() === '' || cellContent === '#N/A' ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=' : cellContent;
-                            } else {
+                        // Set content of elements on the page that have the cellRef as an ID
+                        var outputElements = document.querySelectorAll(`#${cellRef}`);
+                        outputElements.forEach((e) => {
+                            if (e != null) {
+                                if (!this.updateImageIfApplicable(e, cellContent, isEmpty)) {
+                                    this.updateText(e, cellContent, isEmpty);
+                                }
                                 console.debug(`Applying to '${cellRef}': '${cellContent}'`);
-                                outputElement.innerHTML = cellContent;
                             }
-                        }
+                        });
 
-                        const isEmpty = !cellContent || cellContent.trim() === "" || cellContent === '#N/A';
+                        // Find all e.g. [requires-non-empty=B2] elements and show/hide them
                         var requires = document.querySelectorAll(`[requires-non-empty="${cellRef}"]`);
                         var disp = isEmpty ? "none" : "unset";
                         for(var r of requires) {
                             console.debug(`Found ${requires.length} cells requiring a non-empty ${cellRef}. Setting 'display: ${disp}'`);
                             r.style.display = disp;
-                            if (isEmpty) {
-                                r.classList.add("empty");
-                            } else {
-                                r.classList.remove("empty");
-                            }
-                        }
-                        if (!isEmpty) {
-                            var classList = cellContent.trim().split(" ");
-                            var applyAsClasses = document.querySelectorAll(`[apply-as-classes="${cellRef}"]`);
-                            for(var e of applyAsClasses) {
-                                classList.forEach(c => e.classList.add(c));
-                            }
+                            this.resolveEmptiness(r, isEmpty);
                         }
 
+                        // Find all e.g. [apply-as-classes=B2] elements, and either add the cellContent as classes, or remove classes if no longer present
+                        var classList = cellContent.trim().split(" ").filter(Boolean); // Filter out empties
+                        var applyAsClasses = document.querySelectorAll(`[apply-as-classes="${cellRef}"]`);
+                        applyAsClasses.forEach(e => this.applyClasses(e, classList));
                     }
-                });
+                }
 
                 console.debug("Update loop completed");
 
             }).catch(err => console.error(err));
     };
+
+    updateImageIfApplicable(outputElement, cellContent, valueIsEmpty) {
+        if (outputElement.nodeName.toLowerCase() === 'img') {
+            outputElement.src = valueIsEmpty ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=' : cellContent;
+            this.resolveEmptiness(outputElement, valueIsEmpty);
+            return true;
+        }
+        return false;
+    }
+
+    updateText(outputElement, cellContent, valueIsEmpty) {
+        outputElement.innerHTML = cellContent != "#EMPTY" ? cellContent : '';
+        this.resolveEmptiness(outputElement, valueIsEmpty || cellContent === "#EMPTY");
+    }
+
+    applyClasses(outputElement, classes) {
+        // Wipe classes
+        var existingClasses = [...outputElement.classList];
+        existingClasses.forEach(c => {
+            outputElement.classList.remove(c);
+        });
+        
+        // Re-introduce base/existing/template'd classes that were cached on first run
+        var baseClasses = outputElement.getAttribute("base-classes");
+        baseClasses.trim().split(" ").filter(Boolean).forEach(c => {
+            outputElement.classList.add(c);
+        });
+
+        // Add the wanted classes back in
+        classes.forEach(c => outputElement.classList.add(c));
+    }
+
+    resolveEmptiness(outputElement, valueIsEmpty) {
+        if (valueIsEmpty) {
+            outputElement.classList.add("empty");
+        } else {
+            outputElement.classList.remove("empty");
+        }
+    }
 
     /*
      * handleErrors - used to help diagnose any 404-esque errors during the fetch in updateLoop.
