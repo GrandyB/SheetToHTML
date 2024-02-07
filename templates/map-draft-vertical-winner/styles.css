@@ -19,7 +19,7 @@
     max-width: 170px;
 }
 .map-entry.Past .map-img {
-    filter: grayscale(50%) brightness(50%);
+    filter: grayscale(40%) brightness(50%);
 }
 .map-entry.Past .map-name {
     color: #ddd;

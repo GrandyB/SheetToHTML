@@ -52,29 +52,23 @@ class Helpers {
     return column + newRow;
   }
 
-  // Helper function to convert column letters to indices
-  static columnToIndex(column) {
-    let index = 0;
-    const length = column.length;
-
-    for (let i = 0; i < length; i++) {
-      index = index * 26 + (column.charCodeAt(i) - 64); // Subtract 64 to get the value (A has ASCII value 65)
+  // // Helper function to convert column indices to letters
+  static indexToColumn(column) {
+    var temp, letter = '';
+    while (column > 0) {
+      temp = (column - 1) % 26;
+      letter = String.fromCharCode(temp + 65) + letter;
+      column = (column - temp - 1) / 26;
     }
-
-    return index - 1;
+    return letter;
   }
 
-  // Helper function to convert column indices to letters
-  static indexToColumn(index) {
-    let column = "";
-    let remainder;
-
-    while (index >= 0) {
-      remainder = index % 26;
-      column = String.fromCharCode(65 + remainder) + column; // Add 65 to get the ASCII value of the corresponding letter (A)
-      index = Math.floor(index / 26) - 1;
+  // Helper function to convert column letters to indices
+  static columnToIndex(letter) {
+    var column = 0, length = letter.length;
+    for (var i = 0; i < length; i++) {
+      column += (letter.charCodeAt(i) - 64) * Math.pow(26, length - i - 1);
     }
-
     return column;
   }
 }
