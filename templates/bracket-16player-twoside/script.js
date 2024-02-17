@@ -76,6 +76,12 @@ function load() {
     matchup('Z10', left, 567, colsRight);
     matchup('Z14', left, 865, colsRight);
 
+    // Semis
+    left = 511;
+    matchup('N7', left, 488, colsLeft);
+    left = 1036;
+    matchup('R7', left, 488, colsRight);
+
     // Grand finals
     matchup('M16', 499, 940, grandFinalsLeft);
     matchup('P16', 966, 940, grandFinalsRight);
