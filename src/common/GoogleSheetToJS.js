@@ -84,6 +84,7 @@ class GoogleSheetToJS {
                   }
                 }
 
+                // TODO: What happens if cell is made empty on the last column that has a value? Answer: Nothing currently
                 for(var e of entry) {
                     let cellRef = e.ref;
                     let cellContent = e.value;
@@ -129,7 +130,8 @@ class GoogleSheetToJS {
 
     updateImageIfApplicable(outputElement, cellContent, valueIsEmpty) {
         if (outputElement.nodeName.toLowerCase() === 'img') {
-            outputElement.src = valueIsEmpty ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=' : cellContent;
+            //outputElement.src = valueIsEmpty ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=' : cellContent;
+            this.crossfadeImages(outputElement, valueIsEmpty ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=' : cellContent);
             this.resolveEmptiness(outputElement, valueIsEmpty);
             return true;
         }
@@ -137,9 +139,28 @@ class GoogleSheetToJS {
     }
 
     updateText(outputElement, cellContent, valueIsEmpty) {
-        outputElement.innerHTML = cellContent != "#EMPTY" ? cellContent : '';
+        outputElement.innerHTML = cellContent !== "#EMPTY" ? cellContent : '';
         this.resolveEmptiness(outputElement, valueIsEmpty || cellContent === "#EMPTY");
     }
+
+    createImageElement(existing, src) {
+        const img = existing.cloneNode(true);
+        img.src = src;
+        img.classList.add('fade-in');
+        return img;
+    }
+
+    crossfadeImages(outputElement, newSrc) {
+        const newImg = this.createImageElement(outputElement, newSrc);
+        outputElement.parentNode.insertBefore(newImg, outputElement.nextSibling);
+      
+        setTimeout(() => {
+          newImg.classList.remove('fade-in');
+        }, 100);
+        setTimeout(() => {
+          outputElement.remove();
+        }, 1100);
+      }
 
     applyClasses(outputElement, classes) {
         // Wipe classes
@@ -156,6 +177,7 @@ class GoogleSheetToJS {
 
         // Add the wanted classes back in
         classes.forEach(c => outputElement.classList.add(c));
+        console.debug(`applyClasses pre: [${existingClasses.join(", ")}], base: [${baseClasses}], post: [${outputElement.classList}]`);
     }
 
     resolveEmptiness(outputElement, valueIsEmpty) {
