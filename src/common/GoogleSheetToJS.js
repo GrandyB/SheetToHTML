@@ -39,6 +39,8 @@ class GoogleSheetToJS {
         // 'cellValues' is our cache of cell ids to their content, e.g. "C3" => "Test value"
         this.cellValues = new Map();
         this.firstRun = true;
+        this.textAnimator = TextAnimator.for("");
+        this.imageAnimator = ImageAnimator.for("");
     }
 
     /*
@@ -130,8 +132,7 @@ class GoogleSheetToJS {
 
     updateImageIfApplicable(outputElement, cellContent, valueIsEmpty) {
         if (outputElement.nodeName.toLowerCase() === 'img') {
-            //outputElement.src = valueIsEmpty ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=' : cellContent;
-            this.crossfadeImages(outputElement, valueIsEmpty ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=' : cellContent);
+            this.imageAnimator.animate(outputElement, valueIsEmpty ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=' : cellContent);
             this.resolveEmptiness(outputElement, valueIsEmpty);
             return true;
         }
@@ -139,28 +140,9 @@ class GoogleSheetToJS {
     }
 
     updateText(outputElement, cellContent, valueIsEmpty) {
-        outputElement.innerHTML = cellContent !== "#EMPTY" ? cellContent : '';
+        this.textAnimator.animate(outputElement, cellContent !== "#EMPTY" ? cellContent : '');
         this.resolveEmptiness(outputElement, valueIsEmpty || cellContent === "#EMPTY");
     }
-
-    createImageElement(existing, src) {
-        const img = existing.cloneNode(true);
-        img.src = src;
-        img.classList.add('fade-in');
-        return img;
-    }
-
-    crossfadeImages(outputElement, newSrc) {
-        const newImg = this.createImageElement(outputElement, newSrc);
-        outputElement.parentNode.insertBefore(newImg, outputElement.nextSibling);
-      
-        setTimeout(() => {
-          newImg.classList.remove('fade-in');
-        }, 100);
-        setTimeout(() => {
-          outputElement.remove();
-        }, 1100);
-      }
 
     applyClasses(outputElement, classes) {
         // Wipe classes
@@ -196,5 +178,12 @@ class GoogleSheetToJS {
             throw Error(response.statusText);
         }
         return response;
+    }
+
+    setTextAnimator(animator) {
+        this.textAnimator = animator;
+    }
+    setImageAnimator(animator) {
+        this.imageAnimator = animator;
     }
 }
