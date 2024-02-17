@@ -41,12 +41,12 @@ function load() {
     ];
     var grandFinalsLeft = [
         { width: 60, ...rowImage, height: 60 },
-        { width: 331, ...rowName, height: 60 },
-        { width: 67, ...rowScore, height: 60 }
+        { width: 331, ...rowName, height: 60, alignment: 'flex-center-center', style: 'font-size: 40px; color: #fff;' },
+        { width: 67, ...rowScore, height: 60, style: 'font-size: 40px; color: #000;' }
     ];
     var grandFinalsRight = [
-        { width: 67, ...rowScore, height: 60 },
-        { width: 331, ...rowName, height: 60 },
+        { width: 67, ...rowScore, height: 60, style: 'font-size: 40px; color: #000;' },
+        { width: 331, ...rowName, height: 60, alignment: 'flex-center-center', style: 'font-size: 40px; color: #fff;' },
         { width: 60, ...rowImage, height: 60 }
     ];
   
