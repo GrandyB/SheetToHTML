@@ -23,6 +23,9 @@
 
 /** Straight/instant text transition. */
 class TextCutAnimator {
+    constructor() {
+        this.time = 0;
+    }
     animate(outputElement, newText) {
         outputElement.innerHTML = newText;
     }
@@ -30,8 +33,8 @@ class TextCutAnimator {
 
 /** Reduce existing text to empty, then write it letter by letter. */
 class TextWipeAndRewriteAnimator {
-    constructor(typingInterval) {
-        this.typingInterval = typingInterval;
+    constructor(time) {
+        this.time = time;
     }
     animate(outputElement, newText) {
         const existing = outputElement.innerHTML;
@@ -48,10 +51,11 @@ class TextWipeAndRewriteAnimator {
             updates.push(s);
         }
         var i = 0;
+        var typingInterval = this.time / updates.length;
         updates.forEach(u => {
             setTimeout(() => { 
                 outputElement.innerHTML = u;
-            }, this.typingInterval * i);
+            }, typingInterval * i);
             i++;
         });
     }
@@ -59,8 +63,8 @@ class TextWipeAndRewriteAnimator {
 
 /** Replace existing to new letter by letter. */
 class TextSwitchAnimator {
-    constructor(typingInterval) {
-        this.typingInterval = typingInterval;
+    constructor(time) {
+        this.time = time;
     }
     animate(outputElement, newText) {
         var existing = outputElement.innerHTML;
@@ -95,10 +99,11 @@ class TextSwitchAnimator {
     doUpdates(outputElement, updates) {
         console.debug(updates);
         var i = 0;
+        var typingInterval = this.time / updates.length;
         updates.forEach(u => {
             setTimeout(() => { 
                 outputElement.innerHTML = u;
-            }, this.typingInterval * i);
+            }, typingInterval * i);
             i++;
         });
     }
@@ -123,27 +128,33 @@ class ImageCrossfadeAnimator {
           newImg.classList.remove('fade-in');
         }, 100);
         setTimeout(() => {
-          outputElement.remove();
+          outputElement.classList.add('fade-in');
         }, 100 + this.time);
+        setTimeout(() => {
+          outputElement.remove();
+        }, 100 + this.time*2);
     }
 }
 
 class ImageCutAnimator {
+    constructor() {
+        this.time = 0;
+    }
     animate(outputElement, newSrc) {
         outputElement.src = newSrc;
     }
 }
 
-const DEFAULT_TEXT_ANIMATOR = new TextSwitchAnimator(20);
-const DEFAULT_IMAGE_ANIMATOR = new ImageCrossfadeAnimator(500);
+const DEFAULT_TEXT_ANIMATOR = new TextSwitchAnimator(1500);
+const DEFAULT_IMAGE_ANIMATOR = new ImageCrossfadeAnimator(2500);
 
 class TextAnimator {
     static for(name) {
         switch(name) {
             case "wipe-rewrite":
-                return new TextWipeAndRewriteAnimator(20);
+                return new TextWipeAndRewriteAnimator(1500);
             case "switch":
-                return new TextSwitchAnimator(20);
+                return new TextSwitchAnimator(1500);
             case "cut":
                 return new TextCutAnimator();
             default:

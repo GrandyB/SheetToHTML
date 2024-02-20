@@ -72,11 +72,10 @@ body {
 	top: 0;
 	left: 0;
 }
-.table-inner img {
-	width: 100%;
+#main img {
 	opacity: 1;
 	transition: opacity 1s;
 }
-.table-inner img.fade-in {
+#main img.fade-in {
 	opacity: 0;
 }

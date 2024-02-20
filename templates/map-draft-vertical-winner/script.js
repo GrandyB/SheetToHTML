@@ -31,7 +31,9 @@ function load() {
         <div class="map-entry" requires-non-empty="{{requiresNonEmpty}}" apply-as-classes="{{currentRef}}">
             <div class="pre"></div>
             <div class="entry">
-                <img id="{{imageRef}}" class="map-img" />
+                <div class="img-container">
+                    <img id="{{imageRef}}" class="map-img" />
+                </div>
                 <span id="{{nameRef}}" class="map-name"></span>
                 <span id="{{winnerRef}}" class="winner-name"></span>
             </div>

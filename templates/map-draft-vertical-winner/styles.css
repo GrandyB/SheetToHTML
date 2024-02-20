@@ -52,25 +52,28 @@
     transition: opacity 0.3s ease-in-out;
     animation: flash 1.25s linear infinite alternate;
 }
-.map-entry:not(.Past):not(.Current) img {
+.map-entry:not(.Past):not(.Current) .img-container {
     opacity: 0.4;
 }
 
 .entry {
     position: relative;
     height: 285px;
-    background-color: #DA7E39;
     overflow: hidden;
+    background-color: #DA7E39;
     border: 4px solid #d4712a;
 }
 
-.map-img {
+#container img.map-img {
     height: 100%;
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
 }
 
+.map-name {
+    transition: all 0.5s;
+}
 .map-name:not(.empty) {
     writing-mode: vertical-rl;
     position: absolute;
@@ -92,6 +95,7 @@
     font-size: 16em;
     color: rgba(255, 180, 18, 0.1);
     opacity: 0;
+    transition: all 0.5s;
 }
 .map-entry.Current .map-name.empty::before {
     animation: flash 1.25s linear infinite alternate;

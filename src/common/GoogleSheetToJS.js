@@ -133,7 +133,7 @@ class GoogleSheetToJS {
     updateImageIfApplicable(outputElement, cellContent, valueIsEmpty) {
         if (outputElement.nodeName.toLowerCase() === 'img') {
             this.imageAnimator.animate(outputElement, valueIsEmpty ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=' : cellContent);
-            this.resolveEmptiness(outputElement, valueIsEmpty);
+            setTimeout(() => this.resolveEmptiness(outputElement, valueIsEmpty), this.imageAnimator.time);
             return true;
         }
         return false;
@@ -141,7 +141,7 @@ class GoogleSheetToJS {
 
     updateText(outputElement, cellContent, valueIsEmpty) {
         this.textAnimator.animate(outputElement, cellContent !== "#EMPTY" ? cellContent : '');
-        this.resolveEmptiness(outputElement, valueIsEmpty || cellContent === "#EMPTY");
+        setTimeout(() => this.resolveEmptiness(outputElement, valueIsEmpty || cellContent === "#EMPTY"), this.textAnimator.time);
     }
 
     applyClasses(outputElement, classes) {

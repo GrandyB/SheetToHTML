@@ -65,7 +65,7 @@ function loadScript(url) {
 
 const tabName = getAndCheckURLParam("tab");
 const spreadsheetId = getAndCheckURLParam("id");
-const imgCell = getAndCheckURLParam("imgCell");
+const imgCell = getURLParam("imgCell");
 const template = getAndCheckURLParam("template");
 
 const autoUpdate = hasURLParam("update");
@@ -90,8 +90,13 @@ if (color) {
 
 if (customCss.length !== 0) document.getElementById("customStyles").appendChild(document.createTextNode(`* { ${customCss.join(" ")} }`));
 
-if (tabName && spreadsheetId && imgCell && template) {
+if (imgCell && imgCell.trim() !== "") {
 	document.getElementById("bg").id = imgCell;
+} else {
+	document.getElementById("bg").src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=';
+}
+
+if (tabName && spreadsheetId && template) {
 
 	var sheets = new GoogleSheetToJS(
 		Config.getApiKey(),
