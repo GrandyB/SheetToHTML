@@ -30,10 +30,6 @@
     height: 30px;
 }
 
-@keyframes flash {
-    0% { opacity: 0 }
-    100% { opacity: 1 }
-}
 .map-entry.Current .pre {
     background: linear-gradient(0deg, rgba(230,150,18,1) 30%, rgba(0,0,0,0) 100%);
     animation: flash 1.25s linear infinite alternate;
