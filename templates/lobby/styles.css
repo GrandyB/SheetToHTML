@@ -32,7 +32,11 @@ body {
     flex-direction: column;
 }
 .civ-draft {
-    gap: 5px;
+    gap: 8px;
+}
+.map-draft .map.used, .civ-draft .civ.used {
+    filter: grayscale(30%) brightness(60%);
+    opacity: 0.5;
 }
 
 .draft {
@@ -40,6 +44,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 .draft.left {
     left: 5px;
@@ -77,11 +82,12 @@ body {
     top: 0;
 }
 .civ-ban, .civ-snipe {
-    height: 65px;
+    height: 97px;
     top: calc(50% - 2px);
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .left-civ.loss, .right-civ.loss  {
     filter: grayscale(70%) brightness(30%);
 }
@@ -93,6 +99,9 @@ body {
 }
 .civ.Ban > .civ-img, .civ.Snipe > .civ-img {
     filter: grayscale(20%) brightness(70%);
+}
+.civ-img.empty ~ .civ-ban, .civ-img.empty ~ .civ-snipe {
+    display: none;
 }
 
 .map {
@@ -146,7 +155,7 @@ body {
     top: 30px;
     transform: translate(50%, 0);
 }
-.games .game:not(.current) .map {
+.games .game:not(.current):not(.past) .map {
     filter: grayscale(20%) brightness(70%);
 }
 .games .game.current {
@@ -169,4 +178,9 @@ body {
     font-size: 30px;
     color: white;
     text-shadow: 0px 0px 4px rgba(0,0,0,1);
+}
+
+/* handle large series */
+.games-container.maps-9 .game {
+    zoom: 0.8;
 }

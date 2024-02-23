@@ -48,7 +48,7 @@ function load() {
 
     // TODO: Pick/ban icons?
     Handlebars.registerPartial("civ", `
-        <div class="civ" apply-as-classes="{{typeRef}}">
+        <div class="civ" apply-as-classes="{{classesRef}}">
             <img id="{{imageRef}}" class="civ-img" />
             <img id="${winImageRef}" class="civ-win" />
             <img id="${banImageRef}" class="civ-ban" />
@@ -104,6 +104,7 @@ function load() {
     html += `</div>`;
 
     // GAMES
+    html += `<div class="games-container" apply-as-classes="K5">`;
     addArea("games", "B5", (h, startRef) => {
         var h = "";
         for (var i = 0; i < 9; i++) {
@@ -121,6 +122,7 @@ function load() {
         }
         return h;
     });
+    html += `</div>`;
 
     // CURRENT GAME
     addArea("current-game", "", (h, startRef) => {

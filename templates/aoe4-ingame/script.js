@@ -30,8 +30,10 @@ function load() {
     html += partialBoxCentered({ class: 'right score', style: `left: 1022px; top: 107px; width: 85px; height: 85px;`, content: `<span id="B3"></span>`});
     html += partialBoxCentered({ class: 'bestof', style: `left: 822px; top: 200px; width: 270px; height: 50px;`, content: `<span id="B5"></span>`});
 
+    html += `<div requires-non-empty="B7">`;
     html += partialBoxRight({ class: 'map label', style: `left: 1120px; top: 1015px; width: 400px; height: 25px;`, content: `<span id="map-label">MAP:</span>`});
     html += partialBoxRight({ class: 'map name', style: `left: 1120px; top: 1040px; width: 400px; height: 25px;`, content: `<span id="B7"></span>`});
+    html += `</div>`;
     
     html += `<div id="streamelements" style="position: absolute; left: 1155px; top: 700px; width: 500px; height: 500px"><iframe style="transform:scale(1);border:none;width:500px;height:500px" id="B9"></iframe></div>`;
     
