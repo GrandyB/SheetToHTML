@@ -115,7 +115,7 @@ if (tabName && spreadsheetId && imgCell && template) {
 			sheets.update();
 		}
 		if (fadeIn) {
-			setTimeout(() => document.getElementById('main').classList.remove("hidden"), 1000);
+			setTimeout(() => document.getElementById('main').classList.remove("hidden"), 1200);
 		}
 	}).catch(error => {
         console.error('Failed to load template:', error);

@@ -151,10 +151,14 @@ body {
 }
 .game .right-civ {
     position: absolute;
-    right: 0;
+    right: 0px;
     top: 30px;
     transform: translate(50%, 0);
 }
+.game .civ-img {
+    height: 45px;
+}
+
 .games .game:not(.current):not(.past) .map {
     filter: grayscale(20%) brightness(70%);
 }
