@@ -24,10 +24,10 @@
 function loadTemplate(name) {
     return new Promise((resolve, reject) => {
 		console.log(`Loading template: '${name}'`);
-		var scriptElement = loadScript(`https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/templates/${name}/script.js`);
+		var scriptElement = loadScript(`https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@lobby/templates/${name}/script.js`);
 		scriptElement.onload = function () {
 			load();
-			addStylesheet(`https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@latest/templates/${name}/styles.css`);
+			addStylesheet(`https://cdn.jsdelivr.net/gh/GrandyB/SheetToHTML@lobby/templates/${name}/styles.css`);
 			resolve();
 		};
 		scriptElement.onerror = function () {
