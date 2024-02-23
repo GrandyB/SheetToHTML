@@ -99,7 +99,7 @@ class GoogleSheetToJS {
                         var outputElements = document.querySelectorAll(`#${cellRef}`);
                         outputElements.forEach((e) => {
                             if (e != null) {
-                                if (!this.updateImageIfApplicable(e, cellContent, isEmpty)) {
+                                if (!this.updateSrcIfApplicable(e, cellContent, isEmpty)) {
                                     this.updateText(e, cellContent, isEmpty);
                                 }
                                 console.debug(`Applying to '${cellRef}': '${cellContent}'`);
@@ -127,9 +127,14 @@ class GoogleSheetToJS {
             }).catch(err => console.error(err));
     };
 
-    updateImageIfApplicable(outputElement, cellContent, valueIsEmpty) {
+    updateSrcIfApplicable(outputElement, cellContent, valueIsEmpty) {
         if (outputElement.nodeName.toLowerCase() === 'img') {
             outputElement.src = valueIsEmpty ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=' : cellContent;
+            this.resolveEmptiness(outputElement, valueIsEmpty);
+            return true;
+        }
+        if (outputElement.nodeName.toLowerCase() === 'iframe') {
+            outputElement.src = cellContent;
             this.resolveEmptiness(outputElement, valueIsEmpty);
             return true;
         }

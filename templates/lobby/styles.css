@@ -1,3 +1,8 @@
+body {
+    width: 1920px;
+    overflow: hidden;
+}
+
 .player {
     font-size: 70px;
     color: white;

@@ -31,9 +31,9 @@ function load() {
     const banImageRef = "O11";
     const snipeImageRef = "O12";
     
-    const streamElements1Ref = "O14";
-    const streamElements2Ref = "O15";
-    const streamElements3Ref = "O16";
+    const streamElements1Ref = "O15";
+    const streamElements2Ref = "O16";
+    const streamElements3Ref = "O17";
 
     Handlebars.registerPartial("map", `
         <div class="map" requires-non-empty="{{nameRef}}" apply-as-classes="{{classesRef}}">
@@ -175,9 +175,9 @@ function load() {
     html += partialBoxCentered({ class: 'talent', style: `left: 1054px; top: 975px; width: 430px; height: 40px;`, content: '<span id="Q5"></span>'});
     
     // ALERTS AND CHAT ETC
-    html += `<div style="position: absolute; left: 568px; top: 660px; width: 500px; height: 500px"><iframe style="transform:scale(1);border:none;width:500px;height:500px" src="${streamElements1Ref}"></iframe></div>`;
-    html += `<div style="position: absolute; left: 1620px; top: 0px; width: 300px; height: 700px"><iframe style="transform:scale(1);border:none;width:300px;height:700px" src="${streamElements2Ref}"></iframe></div>`;
-    html += `<div style="position: absolute; left: 1620px; top: 730px; width: 300px; height: 350px"><iframe style="transform:scale(1);border:none;width:300px;height:350px" src="${streamElements3Ref}"></iframe></div>`;
+    html += `<div class="streamelements one" style="position: absolute; left: 555px; top: 660px; width: 500px; height: 500px"><iframe style="transform:scale(1);border:none;width:500px;height:500px" id="${streamElements1Ref}"></iframe></div>`;
+    html += `<div class="streamelements two" style="position: absolute; left: 1620px; top: 0px; width: 300px; height: 700px"><iframe style="transform:scale(1);border:none;width:300px;height:700px" id="${streamElements2Ref}"></iframe></div>`;
+    html += `<div class="streamelements three" style="position: absolute; left: 1620px; top: 730px; width: 300px; height: 350px"><iframe style="transform:scale(1);border:none;width:300px;height:350px" id="${streamElements3Ref}"></iframe></div>`;
     
     dom.innerHTML += html;
 }
