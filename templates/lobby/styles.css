@@ -1,6 +1,7 @@
 body {
     width: 1920px;
     overflow: hidden;
+    background-color: #222;
 }
 
 .player {
@@ -11,7 +12,7 @@ body {
 
 .round-info {
     position: absolute;
-    top: 265px;
+    top: 270px;
     display: flex;
     flex-direction: row;
     width: calc(100% - 300px);
@@ -33,10 +34,11 @@ body {
 }
 .civ-draft {
     gap: 8px;
+    max-height: 500px;
 }
 .map-draft .map.used, .civ-draft .civ.used {
     filter: grayscale(30%) brightness(60%);
-    opacity: 0.5;
+    opacity: 0.75;
 }
 
 .draft {
@@ -45,16 +47,21 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    top: 200px;
 }
 .draft.left {
     left: 5px;
-    top: 230px;
     flex-direction: row;
 }
 .draft.right {
     right: 310px;
-    top: 230px;
     flex-direction: row-reverse;
+}
+.draft.left .civ-draft {
+    flex-wrap: wrap;
+}
+.draft.right .civ-draft {
+    flex-wrap: wrap-reverse;
 }
 
 .map-img {
@@ -63,6 +70,9 @@ body {
 .civ {
     position: relative;
     height: 100%;
+}
+.draft .civ:not(.not-empty) {
+    display: none;
 }
 .civ-img.empty {
     display: none;
@@ -132,7 +142,7 @@ body {
 
 .games {
     position: absolute;
-    top: 300px;
+    top: 325px;
     left: calc(50% - 150px);
     transform: translateX(-50%);
     display: flex;
@@ -171,7 +181,7 @@ body {
 
 .current-game {
     position: absolute;
-    top: 570px;
+    top: 600px;
     left: calc(50% - 150px);
     transform: translate(-50%, -50%) scale(2.5);
     display: flex;
