@@ -131,6 +131,13 @@ function load() {
             mapName: 'H1', mapImage: 'I1', current: ''});
     });
 
+    // LOBBY INFO
+    html += `<div id="lobby-info">`;
+    html += `<span id="L16" class="label" requires-non-empty="L16"></span>`;
+    html += `<span id="L17" class="timer" style="display: none"></span>`;
+    html += `<span id="timer-output"></span>`;
+    html += `</div>`;
+
     html += `<div class="draft right">`;
     // RIGHT MAP DRAFT
     addArea("map-draft", "F33", (h, startRef) => {
@@ -177,9 +184,35 @@ function load() {
     html += partialBoxCentered({ class: 'talent', style: `left: 1054px; top: 975px; width: 430px; height: 40px;`, content: '<span id="Q5"></span>'});
     
     // ALERTS AND CHAT ETC
-    html += `<div class="streamelements one" style="position: absolute; left: 555px; top: 660px; width: 500px; height: 500px"><iframe style="transform:scale(1);border:none;width:500px;height:500px" id="${streamElements1Ref}"></iframe></div>`;
-    html += `<div class="streamelements two" style="position: absolute; left: 1620px; top: 0px; width: 300px; height: 700px"><iframe style="transform:scale(1);border:none;width:300px;height:700px" id="${streamElements2Ref}"></iframe></div>`;
-    html += `<div class="streamelements three" style="position: absolute; left: 1620px; top: 730px; width: 300px; height: 350px"><iframe style="transform:scale(1);border:none;width:300px;height:350px" id="${streamElements3Ref}"></iframe></div>`;
+    html += `<div class="streamelements one" style="position: absolute; left: 555px; top: 660px; width: 500px; height: 500px" requires-non-empty="${streamElements1Ref}"><iframe style="transform:scale(1);border:none;width:500px;height:500px" id="${streamElements1Ref}"></iframe></div>`;
+    html += `<div class="streamelements two" style="position: absolute; left: 1620px; top: 0px; width: 300px; height: 700px" requires-non-empty="${streamElements2Ref}"><iframe style="transform:scale(1);border:none;width:300px;height:700px" id="${streamElements2Ref}"></iframe></div>`;
+    html += `<div class="streamelements three" style="position: absolute; left: 1620px; top: 730px; width: 300px; height: 350px" requires-non-empty="${streamElements3Ref}"><iframe style="transform:scale(1);border:none;width:300px;height:350px" id="${streamElements3Ref}"></iframe></div>`;
     
     dom.innerHTML += html;
+
+    function startCountdownListener(input, output) {
+        const outputElement = document.querySelector(output);
+        
+        setInterval(() => {
+            const element = document.querySelector(input);
+            const timestamp = parseInt(element.innerHTML);
+            // Check if innerHTML is not empty and is a valid Unix timestamp
+            if (element.innerHTML.trim() !== "" && !isNaN(timestamp) && timestamp > 0) {
+                const now = Math.floor(Date.now() / 1000); // Current Unix timestamp
+                const timeDifference = timestamp - now;
+                if (timeDifference <= 0) {
+                    outputElement.innerHTML = "00:00";
+                } else {
+                    const minutes = Math.floor(timeDifference / 60);
+                    const seconds = timeDifference % 60;
+                    outputElement.innerHTML = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            } else {
+                outputElement.innerHTML = "";
+            }
+        }, 1000); // Update every second
+    }
+
+    // Start the listener for elements matching the given CSS selector
+    startCountdownListener('#lobby-info .timer', '#timer-output');
 }
