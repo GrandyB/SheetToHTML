@@ -33,7 +33,7 @@ body {
 }
 .civ-draft {
     gap: 8px;
-    max-height: 500px;
+    max-height: 510px;
 }
 .map-draft .map.used, .civ-draft .civ.used {
     filter: grayscale(30%) brightness(60%);
