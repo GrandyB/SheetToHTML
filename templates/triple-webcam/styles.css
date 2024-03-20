@@ -1,0 +1,27 @@
+body {
+    width: 1920px;
+    overflow: hidden;
+}
+
+.talent {
+    font-size: 40px;
+    color: white;
+    text-shadow: 0px 0px 4px rgba(0,0,0,1);
+    height: 40px;
+}
+
+.talent.left {
+    top: 835px;
+    left: 0;
+    width: 35%;
+}
+.talent.centre {
+    top: 855px;
+    left: 25%;
+    width: 50%;
+}
+.talent.right {
+    top: 835px;
+    right: 0;
+    width: 35%;
+}
