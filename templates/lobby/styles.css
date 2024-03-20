@@ -107,7 +107,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.left-civ.loss, .right-civ.loss  {
+.game:not(.current) .left-civ.loss, .game:not(.current) .right-civ.loss  {
     filter: grayscale(70%) brightness(30%);
 }
 .left-civ.win .civ-win, .right-civ.win .civ-win {
