@@ -51,6 +51,7 @@ body {
     gap: 4px;
     top: 150px;
     flex-direction: column;
+    width: 580px;
 }
 .draft.left {
     left: 5px;
