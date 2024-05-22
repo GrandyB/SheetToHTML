@@ -3,7 +3,6 @@ body {
     overflow: hidden;
     text-transform: uppercase;
     font-weight: bold;
-    background-color: #a2c;
 }
 
 .player {
@@ -17,7 +16,7 @@ body {
 
 .round-info {
     position: absolute;
-    top: 255px;
+    top: 225px;
     display: flex;
     flex-direction: row;
     width: calc(100% - 300px);
@@ -25,7 +24,7 @@ body {
     align-items: center;
     font-size: 25px;
     color: white;
-    gap: 30px;
+    gap: 100px;
 }
 .round-info > div {
     width: 50%;
@@ -231,7 +230,7 @@ body {
 #lobby-info {
     width: 400px;
     position: absolute;
-    left: calc(50% - 150px);
+    left: 1290px;
     font-size: 20px;
     transform: translate(-50%, 0);
     color: white;
