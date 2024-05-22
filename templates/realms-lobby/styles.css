@@ -89,7 +89,7 @@ body {
     display: none;
 }
 .civ-img {
-    height: 50px;
+    height: 45px;
     width: auto;
 }
 .civ-win, .civ-ban, .civ-snipe {
@@ -103,7 +103,7 @@ body {
     top: 0;
 }
 .civ-ban, .civ-snipe {
-    height: 97px;
+    height: 93px;
     top: calc(50% - 2px);
     left: 50%;
     transform: translate(-50%, -50%);
@@ -177,17 +177,17 @@ body {
 .game .left-civ {
     position: absolute;
     left: 10px;
-    top: 65px;
+    top: 60px;
     transform: translate(-50%, 0);
 }
 .game .right-civ {
     position: absolute;
     right: 10px;
-    top: 65px;
+    top: 60px;
     transform: translate(50%, 0);
 }
 .game .civ-img {
-    height: 45px;
+    height: 55px;
 }
 
 .games .game.finished .map {
