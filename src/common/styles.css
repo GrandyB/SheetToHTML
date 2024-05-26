@@ -74,3 +74,7 @@ body {
 	0% { transform: scale(1); }
 	100% { transform: scale(1.03); }
 }
+@keyframes less-subtle-expand {
+	0% { transform: scale(1); }
+	100% { transform: scale(1.06); }
+}

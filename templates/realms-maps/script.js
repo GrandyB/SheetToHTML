@@ -44,6 +44,7 @@ function load() {
             <div class="entry">
                 <img id="{{imageRef}}" class="map-img" />
             </div>
+            <div class="highlight">&nbsp;</div>
         </div>
     `);
     const mapPartial = Handlebars.compile(`{{> map }}`);
@@ -61,12 +62,14 @@ function load() {
         html += box;
     }
 
+    html += "<div id='maps-container' apply-as-classes='E50'>";
     var top = 472;
     addMaps(136, top, "A47", html);
     addMaps(406, top, "A51", html);
     addMaps(676, top, "A55", html);
     addMaps(946, top, "A59", html);
     addMaps(1216, top, "A63", html);
+    html += "</div>";
 
     // LOBBY INFO
     html += `<div id="lobby-info">`;
