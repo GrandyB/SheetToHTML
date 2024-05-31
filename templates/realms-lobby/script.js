@@ -144,8 +144,8 @@ function load() {
 
     // ROUND INFO
     html += `<div class="round-info">`;
-    html += '<div id="O1" style="text-align: right;"></div>';
-    html += '<div id="O2" style="text-align: left;"></div>';
+    html += '<div id="O1" style="text-align: center;"></div>';
+    html += '<div id="O2" style="text-align: center;"></div>';
     html += `</div>`;
 
     // TALENT NAMES AND HANDLES

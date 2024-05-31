@@ -16,15 +16,16 @@ body {
 
 .round-info {
     position: absolute;
-    top: 225px;
+    top: 310px;
     display: flex;
-    flex-direction: row;
-    width: calc(100% - 300px);
+    flex-direction: column;
+    width: calc(50% - 400px);
     justify-content: center;
     align-items: center;
     font-size: 25px;
     color: white;
-    gap: 100px;
+    left: 50px;
+    gap: 5px;
 }
 .round-info > div {
     width: 50%;
