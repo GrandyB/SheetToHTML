@@ -137,10 +137,10 @@ function load() {
     html += `</div>`;
 
     // NAMES AND SCORES
-    html += partialBoxRight({ class: 'player left name', style: `left: 160px; top: 64px; width: 400px; height: 90px;`, content: '<span id="B1"></span>'});
-    html += partialBoxCentered({ class: 'player left score', style: `left: 608px; top: 64px; width: 90px; height: 90px;`, content: '<span id="D1"></span>'});
-    html += partialBoxCentered({ class: 'player right score', style: `left: 918px; top: 64px; width: 90px; height: 90px;`, content: '<span id="D2"></span>'});
-    html += partialBoxLeft({ class: 'player right name', style: `left: 1052px; top: 64px; width: 400px; height: 90px;`, content: '<span id="B2"></span>'});
+    html += partialBoxRight({ class: 'player left name', style: `left: 170px; top: 64px; width: 400px; height: 90px;`, content: '<span id="B1"></span>'});
+    html += partialBoxCentered({ class: 'player left score', style: `left: 621px; top: 76px; width: 90px; height: 90px;`, content: '<span id="D1"></span>'});
+    html += partialBoxCentered({ class: 'player right score', style: `left: 908px; top: 76px; width: 90px; height: 90px;`, content: '<span id="D2"></span>'});
+    html += partialBoxLeft({ class: 'player right name', style: `left: 1042px; top: 64px; width: 400px; height: 90px;`, content: '<span id="B2"></span>'});
 
     // ROUND INFO
     html += `<div class="round-info">`;
@@ -154,11 +154,7 @@ function load() {
     if (parseInt(numCams) === 3) {
         html += partialBoxCentered({ class: 'talent', style: `left: 592px; top: 1025px; width: 430px; height: 40px;`, content: '<span id="Q6"></span>'});
     }
-    // ALERTS AND CHAT ETC
-    html += `<div class="streamelements one" style="position: absolute; left: 555px; top: 660px; width: 500px; height: 500px" requires-non-empty="${streamElements1Ref}"><iframe style="transform:scale(1);border:none;width:500px;height:500px" id="${streamElements1Ref}"></iframe></div>`;
-    html += `<div class="streamelements two" style="position: absolute; left: 1620px; top: 0px; width: 300px; height: 700px" requires-non-empty="${streamElements2Ref}"><iframe style="transform:scale(1);border:none;width:300px;height:700px" id="${streamElements2Ref}"></iframe></div>`;
-    html += `<div class="streamelements three" style="position: absolute; left: 1620px; top: 730px; width: 300px; height: 350px" requires-non-empty="${streamElements3Ref}"><iframe style="transform:scale(1);border:none;width:300px;height:350px" id="${streamElements3Ref}"></iframe></div>`;
-    
+
     dom.innerHTML += html;
 
     function startCountdownListener(input, output) {

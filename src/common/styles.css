@@ -81,5 +81,9 @@ body {
 }
 @keyframes less-subtle-expand {
 	0% { transform: scale(1); }
+	100% { transform: scale(1.05); }
+}
+@keyframes even-less-subtle-expand {
+	0% { transform: scale(1); }
 	100% { transform: scale(1.06); }
 }

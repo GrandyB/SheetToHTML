@@ -1,3 +1,29 @@
+* {
+    --sponsor-height: 0px; /* 60px for MoR */
+
+    --round-info-top: calc(230px + var(--sponsor-height));
+    --round-info-left: 50px;
+    --round-info-font-size: 25px;
+
+    --lobby-info-top: var(--round-info-top);
+    --lobby-info-left: 1290px;
+    --lobby-info-font-size: var(--round-info-font-size);
+    
+    --games-top: calc(430px + var(--sponsor-height));
+    --game-finished-filter: grayscale(20%) brightness(50%);
+    --game-finished-opacity: 0.9;
+    --highlight-color: rgba(0, 0, 0, 0.85);
+    --highlight-blur: 25px;
+    --highlight-size: 95%;
+    --highlight-animation: less-subtle-expand;
+
+    --text-shadow: var(--strong-text-shadow);
+    --weak-text-shadow: 0px 0px 4px rgba(0,0,0,1);
+    --strong-text-shadow:   1px 1px 2px rgba(0, 0, 0, 1),
+                            3px 3px 4px rgba(0, 0, 0, 0.8),
+                            4px 4px 6px rgba(0, 0, 0, 0.6);
+}
+
 body {
     width: 1920px;
     overflow: hidden;
@@ -8,29 +34,29 @@ body {
 .player {
     font-size: 50px;
     color: white;
-    text-shadow: 0px 0px 4px rgba(0,0,0,1);
+    text-shadow: var(--text-shadow);
 }
 .score {
     font-size: 70px;
+    text-shadow: var(--text-shadow);
 }
 
 .round-info {
     position: absolute;
-    top: 310px;
+    top: var(--round-info-top);
+    left: var(--round-info-left);
     display: flex;
     flex-direction: column;
     width: calc(50% - 400px);
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: var(--round-info-font-size);
     color: white;
-    left: 50px;
     gap: 5px;
 }
 .round-info > div {
-    width: 50%;
     height: 30px;
-    text-shadow: 0px 0px 4px rgba(0,0,0,1);
+    text-shadow: var(--text-shadow);
 }
 
 .map-draft, .civ-draft {
@@ -157,7 +183,7 @@ body {
 
 .games {
     position: absolute;
-    top: 490px;
+    top: var(--games-top);
     left: calc(50% - 150px);
     transform: translateX(-50%);
     display: flex;
@@ -191,8 +217,8 @@ body {
 }
 
 .games .game.finished .map {
-    filter: grayscale(40%) brightness(40%);
-    opacity: 0.85;
+    filter: var(--game-finished-filter);
+    opacity: var(--game-finished-opacity);
 }
 .games .game:not(.current) .highlight {
     display: none;
@@ -200,10 +226,10 @@ body {
 .games .game.current .highlight {
     display: block;
     border-radius: 100%;
-    background-color: #EC962A;
-    filter: blur(40px);
-    width: 68%;
-    height: 68%;
+    background-color: var(--highlight-color);
+    filter: blur(var(--highlight-blur));
+    width: var(--highlight-size);
+    height: var(--highlight-size);
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
@@ -213,7 +239,7 @@ body {
     animation: flash ease-in-out 1.2s alternate infinite;
 }
 .games .game.current .map-img {
-    animation: subtle-expand ease-in-out 1.2s alternate infinite;
+    animation: var(--highlight-animation) ease-in-out 1.2s alternate infinite;
 }
 
 .current-game {
@@ -231,16 +257,16 @@ body {
 #lobby-info {
     width: 400px;
     position: absolute;
-    left: 1290px;
-    font-size: 20px;
+    top: var(--lobby-info-top);
+    left: var(--lobby-info-left);
+    font-size: var(--lobby-info-font-size);
     transform: translate(-50%, 0);
     color: white;
-    text-shadow: 0px 0px 4px rgba(0,0,0,1);
+    text-shadow: var(--text-shadow);
     display: flex;
     flex-direction: column;
     align-items: center;
     line-height: 1.2;
-    top: 310px;
 }
 #timer-output {
     font-size: 50px;
@@ -249,5 +275,5 @@ body {
 .talent {
     font-size: 20px;
     color: white;
-    text-shadow: 0px 0px 4px rgba(0,0,0,1);
+    text-shadow: var(--text-shadow);
 }
