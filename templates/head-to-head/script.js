@@ -114,7 +114,13 @@ function load() {
     // Start the listener for elements matching the given CSS selector
     startCountdownListener('#lobby-info .timer', '#timer-output');
 
-    setTimeout(() => {
-        document.querySelectorAll("video").forEach(v => v.pause());
-    }, 4000);
+    document.querySelectorAll("video").forEach(v => {
+        Helpers.addVideoSrcListener(v, (videoElement) => {
+            if (videoElement.src !== "") {
+                setTimeout(() => {
+                    videoElement.pause();
+                }, 4000);
+            }
+        });
+    });
 }
