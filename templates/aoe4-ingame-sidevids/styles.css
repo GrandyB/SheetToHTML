@@ -19,6 +19,11 @@
 .map.label {
     font-size: 20px;
 }
+/* .best-of > span {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1),
+                            3px 3px 4px rgba(0, 0, 0, 0.8),
+                            4px 4px 6px rgba(0, 0, 0, 0.6);
+} */
 .map {
     text-shadow: #000 0 calc(4 * .0520833333vw) calc(1 * .0520833333vw)
 }

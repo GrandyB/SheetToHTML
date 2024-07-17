@@ -102,7 +102,7 @@ function relativeTableRow(cellRef, position, columnSpacing, cellData) {
         cell.content = data.image ? `<img id="${cell.cell}"/>` : `<span id="${cell.cell}"></span>`;
 
         cells.push(cell);
-        console.debug(cell);
+        //console.debug(cell);
         previousCellLeft = previousCellLeft + data.width + columnSpacing;
     }
     newData.cells = cells;

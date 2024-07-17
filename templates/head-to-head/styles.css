@@ -31,7 +31,7 @@ body {
 video.h2h {
     position: absolute;
     width: 800px;
-    top: 180px;
+    top: 110px;
     z-index: -1;
 }
 video.h2h.right {
