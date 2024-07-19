@@ -141,9 +141,13 @@ class GoogleSheetToJS {
         if (outputElement.nodeName.toLowerCase() === 'video') {
             if (!valueIsEmpty) {
                 outputElement.src = cellContent;
-                outputElement.addEventListener('canplay', () => outputElement.play());
+                outputElement.addEventListener('canplay', () => {
+                    console.debug(`Play(): ${cellContent}`);
+                    outputElement.play();
+                });
             }
             if (outputElement.hasAttribute("play-to-exit") && valueIsEmpty) {
+                console.debug(`Value is empty, play-to-exit: ${outputElement.src} - ${cellContent}`);
                 outputElement.play();
             } else {
                 this.resolveEmptiness(outputElement, valueIsEmpty);
