@@ -26,8 +26,8 @@ function load() {
     var html = "";
 
     // Scores
-    html += partialBoxCentered({ class: 'left score', style: `left: 814px; top: 140px; width: 85px; height: 85px;`, content: `<span id="B2"></span>`});
-    html += partialBoxCentered({ class: 'right score', style: `left: 1022px; top: 140px; width: 85px; height: 85px;`, content: `<span id="B3"></span>`});
+    html += partialBoxCentered({ class: 'left score', style: `left: 816px; top: 140px; width: 85px; height: 85px;`, content: `<span id="B2"></span>`});
+    html += partialBoxCentered({ class: 'right score', style: `left: 1020px; top: 140px; width: 85px; height: 85px;`, content: `<span id="B3"></span>`});
     html += partialBoxCentered({ class: 'bestof', style: `left: 822px; top: 230px; width: 270px; height: 50px;`, content: `<span id="B5"></span>`});
 
     html += `<div requires-non-empty="B7">`;
