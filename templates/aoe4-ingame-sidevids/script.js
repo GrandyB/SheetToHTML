@@ -26,9 +26,9 @@ function load() {
     var html = "";
 
     // Scores
-    html += partialBoxCentered({ class: 'left score', style: `left: 814px; top: 107px; width: 85px; height: 85px;`, content: `<span id="B2"></span>`});
-    html += partialBoxCentered({ class: 'right score', style: `left: 1022px; top: 107px; width: 85px; height: 85px;`, content: `<span id="B3"></span>`});
-    html += partialBoxCentered({ class: 'bestof', style: `left: 822px; top: 135px; width: 270px; height: 50px;`, content: `<span id="B5"></span>`});
+    html += partialBoxCentered({ class: 'left score', style: `left: 814px; top: 140px; width: 85px; height: 85px;`, content: `<span id="B2"></span>`});
+    html += partialBoxCentered({ class: 'right score', style: `left: 1022px; top: 140px; width: 85px; height: 85px;`, content: `<span id="B3"></span>`});
+    html += partialBoxCentered({ class: 'bestof', style: `left: 822px; top: 230px; width: 270px; height: 50px;`, content: `<span id="B5"></span>`});
 
     html += `<div requires-non-empty="B7">`;
     html += partialBoxRight({ class: 'map label', style: `left: 1120px; top: 1015px; width: 400px; height: 25px;`, content: `<span id="map-label">MAP:</span>`});
