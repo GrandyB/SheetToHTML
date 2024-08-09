@@ -116,8 +116,7 @@ function load() {
     // LOBBY INFO
     html += `<div id="lobby-info">`;
     html += `<span id="L16" class="label" requires-non-empty="L16"></span>`;
-    html += `<span id="L17" class="timer" style="display: none"></span>`;
-    html += `<span id="timer-output"></span>`;
+    html += `<span timer-id="L17"></span>`;
     html += `</div>`;
 
     html += `<div class="draft right">`;
@@ -156,30 +155,4 @@ function load() {
     }
 
     dom.innerHTML += html;
-
-    function startCountdownListener(input, output) {
-        const outputElement = document.querySelector(output);
-        
-        setInterval(() => {
-            const element = document.querySelector(input);
-            const timestamp = parseInt(element.innerHTML);
-            // Check if innerHTML is not empty and is a valid Unix timestamp
-            if (element.innerHTML.trim() !== "" && !isNaN(timestamp) && timestamp > 0) {
-                const now = Math.floor(Date.now() / 1000); // Current Unix timestamp
-                const timeDifference = timestamp - now;
-                if (timeDifference <= 0) {
-                    outputElement.innerHTML = "00:00";
-                } else {
-                    const minutes = Math.floor(timeDifference / 60);
-                    const seconds = timeDifference % 60;
-                    outputElement.innerHTML = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                }
-            } else {
-                outputElement.innerHTML = "";
-            }
-        }, 1000); // Update every second
-    }
-
-    // Start the listener for elements matching the given CSS selector
-    startCountdownListener('#lobby-info .timer', '#timer-output');
 }

@@ -75,8 +75,7 @@ function load() {
     // LOBBY INFO
     html += `<div id="lobby-info">`;
     html += `<span id="L16" class="label" requires-non-empty="L16"></span>`;
-    html += `<span id="L17" class="timer" style="display: none"></span>`;
-    html += `<span id="timer-output"></span>`;
+    html += `<span timer-id="L17"></span>`;
     html += `</div>`;
 
     html += partialBoxCentered({ class: 'player left score', content: '<span id="D1"></span>'});
