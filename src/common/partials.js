@@ -50,9 +50,13 @@ const partialBoxAbsolute = Handlebars.compile(`{{> box-absolute}}`);
 Handlebars.registerPartial("box-centered", `{{> box-absolute class=(concatenate class 'flex-center-center') }}`);
 const partialBoxCentered = Handlebars.compile(`{{> box-centered}}`);
 
-// "box-left" - a 'box-absolute', with centered text; expected data
+// "box-left" - a 'box-absolute', with left-aligned text; expected data
 Handlebars.registerPartial("box-left", `{{> box-absolute class=(concatenate class 'flex-center-left') }}`);
 const partialBoxLeft = Handlebars.compile(`{{> box-left}}`);
+
+// "box-right" - a 'box-absolute', with right-aligned text; expected data
+Handlebars.registerPartial("box-right", `{{> box-absolute class=(concatenate class 'flex-center-right') }}`);
+const partialBoxRight = Handlebars.compile(`{{> box-right}}`);
 
 // "table-row" - 
 Handlebars.registerPartial("table-row", `
@@ -98,7 +102,7 @@ function relativeTableRow(cellRef, position, columnSpacing, cellData) {
         cell.content = data.image ? `<img id="${cell.cell}"/>` : `<span id="${cell.cell}"></span>`;
 
         cells.push(cell);
-        console.debug(cell);
+        //console.debug(cell);
         previousCellLeft = previousCellLeft + data.width + columnSpacing;
     }
     newData.cells = cells;
