@@ -65,7 +65,7 @@ function loadScript(url) {
 
 const tabName = getAndCheckURLParam("tab");
 const spreadsheetId = getAndCheckURLParam("id");
-const imgCell = getAndCheckURLParam("imgCell");
+const imgCell = getURLParam("imgCell");
 const template = getAndCheckURLParam("template");
 
 const autoUpdate = hasURLParam("update");
@@ -90,8 +90,8 @@ if (color) {
 
 if (customCss.length !== 0) document.getElementById("customStyles").appendChild(document.createTextNode(`* { ${customCss.join(" ")} }`));
 
-if (tabName && spreadsheetId && imgCell && template) {
-	document.getElementById("bg").id = imgCell;
+if (tabName && spreadsheetId && template) {
+	document.getElementById("bg").id = imgCell ? imgCell : "";
 
 	var sheets = new GoogleSheetToJS(
 		Config.getApiKey(),
@@ -105,6 +105,8 @@ if (tabName && spreadsheetId && imgCell && template) {
 	}
 
 	loadTemplate(template).then(() => {
+		createCountdowns();
+
 		if (autoUpdate) {
 			console.log(
 				'Automatic data updating enabled (remove "update" from URL to turn off)'
@@ -115,9 +117,65 @@ if (tabName && spreadsheetId && imgCell && template) {
 			sheets.update();
 		}
 		if (fadeIn) {
-			setTimeout(() => document.getElementById('main').classList.remove("hidden"), 1000);
+			setTimeout(() => document.getElementById('main').classList.remove("hidden"), 1200);
 		}
+
+		startCountdownListeners();
 	}).catch(error => {
         console.error('Failed to load template:', error);
     });
+}
+
+function createCountdowns() {
+	// Gather up all timer attributes
+	const timerElements = document.querySelectorAll("[timer-id]");
+	console.info(`Found ${timerElements.length} timers`);
+
+	// Loop through each element that has the 'timer' attribute
+	timerElements.forEach(element => {
+		// Get the cell reference from the 'timer' attribute
+		const cellReference = element.getAttribute('timer-id');
+
+		// Create a new span element with the required attributes
+		const newSpan = document.createElement('span');
+		newSpan.id = cellReference;
+		newSpan.className = 'timer';
+		newSpan.style.display = 'none';
+		newSpan.setAttribute("timer-src", cellReference);
+
+		// Append the new span to the innerHTML of the body or a specific container
+		document.body.innerHTML += newSpan.outerHTML;
+	});
+}
+
+function startCountdownListeners() {
+	setInterval(() => {
+		const outputElements = document.querySelectorAll("[timer-id]"); // provided by user
+		const inputElements = document.querySelectorAll("[timer-src]"); // added via script above in response
+
+		const elementMap = new Map();
+		inputElements.forEach(element => {
+			elementMap.set(element.getAttribute('timer-src'), element);
+		});
+
+		outputElements.forEach(outputElement => {
+			const inputElement = elementMap.get(outputElement.getAttribute('timer-id'));
+			const timestamp = parseInt(inputElement.innerHTML);
+			console.info(`Timestamp: ${timestamp}`);
+			// Check if innerHTML is not empty and is a valid Unix timestamp
+			if (inputElement.innerHTML.trim() !== "" && !isNaN(timestamp) && timestamp > 0) {
+				const now = Math.floor(Date.now() / 1000); // Current Unix timestamp
+				const timeDifference = timestamp - now;
+				if (timeDifference <= 0) {
+					outputElement.innerHTML = "00:00";
+				} else {
+					const minutes = Math.floor(timeDifference / 60);
+					const seconds = timeDifference % 60;
+					outputElement.innerHTML = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+				}
+			} else {
+				outputElement.innerHTML = "";
+			}
+		});
+	}, 1000); // Update every second
 }

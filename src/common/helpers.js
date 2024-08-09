@@ -72,4 +72,20 @@ class Helpers {
     }
     return column;
   }
+
+  static addVideoSrcListener(videoElement, func) {
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+                func(videoElement);
+            }
+        });
+    });
+    
+    observer.observe(videoElement, {
+        attributes: true
+    });
+    
+    func(videoElement);
+  }
 }

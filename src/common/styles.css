@@ -16,7 +16,7 @@ body {
 	height: 100%;
 	top: 0;
 	left: 0;
-	transition: all 1s;
+	transition: all 2s;
 	opacity: 1;
 }
 #main.hidden {
@@ -64,4 +64,26 @@ body {
 }
 .table-inner {
     position: relative;
+}
+
+.image > img {
+	width: 100%;
+	height: 100%;
+}
+
+@keyframes flash {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
+@keyframes subtle-expand {
+	0% { transform: scale(1); }
+	100% { transform: scale(1.03); }
+}
+@keyframes less-subtle-expand {
+	0% { transform: scale(1); }
+	100% { transform: scale(1.05); }
+}
+@keyframes even-less-subtle-expand {
+	0% { transform: scale(1); }
+	100% { transform: scale(1.06); }
 }
