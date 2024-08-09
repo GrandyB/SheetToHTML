@@ -72,8 +72,6 @@ function load() {
     matchup('Z19', left, 666);
     matchup('Z23', left, 795);
 
-    matchup('Z37', 1526, 1244);
-
     // Losers
     // R1
     left = 91;
@@ -99,4 +97,6 @@ function load() {
     matchup('N40', left, 1483);
     matchup('N44', left, 1711);
 
+    
+    matchup('Z37', 1526, 1244);
 }
