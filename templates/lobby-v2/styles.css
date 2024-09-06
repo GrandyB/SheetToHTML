@@ -114,6 +114,9 @@ body {
 .civ-img.empty {
     display: none;
 }
+.big-icons .civ-img {
+    height: 90px;
+}
 .civ-img {
     height: 45px;
     width: auto;
@@ -200,6 +203,13 @@ body {
     margin: 0 -45px;
     height: 110px;
 }
+
+.big-icons .game :is(.left-civ, .right-civ) {
+    top: 45px;
+}
+.game :is(.left-civ, .right-civ) {
+    top: 60px;
+}
 .game .left-civ {
     position: absolute;
     left: 10px;
@@ -211,6 +221,9 @@ body {
     right: 10px;
     top: 60px;
     transform: translate(50%, 0);
+}
+.big-icons .game .civ-img {
+    height: 75px;
 }
 .game .civ-img {
     height: 55px;

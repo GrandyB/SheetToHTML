@@ -39,6 +39,10 @@ function load() {
     if (!numCams) numCams = 2;
     document.getElementById("main").classList.add(`cams-${numCams}`);
 
+    if (getURLParam("big-icons") != null) {
+        document.getElementById("main").classList.add(`big-icons`);
+    }
+
     Handlebars.registerPartial("map", `
         <div class="map" requires-non-empty="{{nameRef}}" apply-as-classes="{{classesRef}}">
             <div class="entry">
