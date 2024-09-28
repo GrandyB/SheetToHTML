@@ -1,0 +1,67 @@
+.cont {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    padding: 15px 15px;
+}
+
+
+.scorebug {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-self: center;
+}
+
+.logo {
+    height: 100%;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.col.names div {
+    width: 100%;
+    padding-right: 12px;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+.col.names .serving::after {
+    position: absolute;
+    content: '•';
+    color: rgb(255, 238, 0);
+    text-shadow: -1px -1px 0 #000000b0,
+                    1px -1px 0 #000000b0,
+                    -1px 1px 0 #000000b0,
+                    1px 1px 0 #000000b0;
+    margin-left: 3px;
+    display: inline-block;
+    width: 9px;
+}
+
+.col.set {
+    width: 25px;
+}
+.col.set div {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+
+.col.points {
+    background-color: rgba(134, 125, 0, 0.5);
+    color: white;
+}
+
+.col div {
+    padding: 4px 8px;
+    border: 1px solid rgba(0,0,0,0.5);
+}
+
+.col.upcoming {
+    display: none;
+}
