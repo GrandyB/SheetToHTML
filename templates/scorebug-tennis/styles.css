@@ -3,8 +3,12 @@
     flex-direction: row;
     gap: 25px;
     padding: 15px 15px;
+    transition: opacity 2s;
+    opacity: 1;
 }
-
+.cont.hide-scorebug {
+    opacity: 0;
+}
 
 .scorebug {
     display: flex;
@@ -25,26 +29,30 @@
 
 .col.names div {
     width: 100%;
-    padding-right: 12px;
+    padding-right: 20px;
     position: relative;
     background-color: rgba(255, 255, 255, 0.8);
     color: black;
+    font-weight: bold;
 }
 .col.names .serving::after {
     position: absolute;
     content: '•';
+    font-size: x-large;
+    line-height: 0.8;
     color: rgb(255, 238, 0);
     text-shadow: -1px -1px 0 #000000b0,
                     1px -1px 0 #000000b0,
                     -1px 1px 0 #000000b0,
                     1px 1px 0 #000000b0;
-    margin-left: 3px;
+    margin-left: 5px;
     display: inline-block;
-    width: 9px;
+    width: 12px;
 }
 
 .col.set {
-    width: 25px;
+    width: 30px;
+    text-align: center;
 }
 .col.set div {
     width: 100%;
@@ -55,11 +63,13 @@
 .col.points {
     background-color: rgba(134, 125, 0, 0.5);
     color: white;
+    text-align: center;
 }
 
 .col div {
     padding: 4px 8px;
     border: 1px solid rgba(0,0,0,0.5);
+    height: 30px;
 }
 
 .col.upcoming {

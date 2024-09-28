@@ -25,7 +25,7 @@ function load() {
     var dom = document.getElementById("main");
     var html = "";
     
-    html += `<div class="cont">`
+    html += `<div class="cont" apply-as-classes="K2">`
     html += `<div class="scorebug">`;
     
     html += `<div class="col names"><div id="C2" apply-as-classes="C20"></div><div id="D2" apply-as-classes="D20"></div></div>`;
