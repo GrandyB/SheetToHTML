@@ -1,0 +1,10 @@
+.table-inner img {
+    width: 40px;
+}
+
+.flex-center-left img {
+    margin-left: 15px;
+}
+.flex-center-right img {
+    margin-right: 15px;
+}

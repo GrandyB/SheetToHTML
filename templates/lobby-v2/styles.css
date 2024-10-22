@@ -8,6 +8,8 @@
     --lobby-info-top: var(--round-info-top);
     --lobby-info-left: 1290px;
     --lobby-info-font-size: var(--round-info-font-size);
+
+    --score-color: #ffc532;
     
     --games-top: calc(430px + var(--sponsor-height));
     --game-finished-filter: grayscale(20%) brightness(50%);
@@ -38,7 +40,12 @@ body {
 }
 .score {
     font-size: 70px;
+    color: var(--score-color);
     text-shadow: var(--text-shadow);
+}
+.player.country img, img.country {
+    width: 40px;
+    margin: 0 20px;
 }
 
 .round-info {

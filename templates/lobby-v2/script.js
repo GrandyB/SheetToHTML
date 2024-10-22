@@ -141,8 +141,10 @@ function load() {
 
     // NAMES AND SCORES
     html += partialBoxRight({ class: 'player left name', style: `left: 170px; top: 64px; width: 400px; height: 90px;`, content: '<span id="B1"></span>'});
-    html += partialBoxCentered({ class: 'player left score', style: `left: 621px; top: 76px; width: 90px; height: 90px;`, content: '<span id="D1"></span>'});
-    html += partialBoxCentered({ class: 'player right score', style: `left: 908px; top: 76px; width: 90px; height: 90px;`, content: '<span id="D2"></span>'});
+    html += partialBoxCentered({ class: 'player left score', style: `left: 621px; top: 72px; width: 90px; height: 90px;`, content: '<span id="D1"></span>'});
+    html += partialBoxCentered({ class: 'player left country', style: `left: 621px; top: 8px; width: 90px; height: 90px;`, content: '<img id="M19" />'});
+    html += partialBoxCentered({ class: 'player right country', style: `left: 908px; top: 8px; width: 90px; height: 90px;`, content: '<img id="M20" />'});
+    html += partialBoxCentered({ class: 'player right score', style: `left: 908px; top: 72px; width: 90px; height: 90px;`, content: '<span id="D2"></span>'});
     html += partialBoxLeft({ class: 'player right name', style: `left: 1042px; top: 64px; width: 400px; height: 90px;`, content: '<span id="B2"></span>'});
 
     // ROUND INFO
