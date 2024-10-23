@@ -19,7 +19,8 @@
     --highlight-size: 95%;
     --highlight-animation: less-subtle-expand;
 
-    --civ-ban-snipe-icon-size: 145px; /* AoE4 93px, AoM 145px. */
+    --civ-ban-snipe-icon-top: calc(50% - 6px); /* AoE4: calc(50% - 2px), AoM: calc(50% - 6px); */
+    --civ-ban-snipe-icon-size: 125px; /* AoE4: 93px, AoM: 125px. */
 
     --text-shadow: var(--strong-text-shadow);
     --weak-text-shadow: 0px 0px 4px rgba(0,0,0,1);
@@ -142,7 +143,7 @@ body {
 }
 .civ-ban, .civ-snipe {
     height: var(--civ-ban-snipe-icon-size);
-    top: calc(50% - 2px);
+    top: var(--civ-ban-snipe-icon-top);
     left: 50%;
     transform: translate(-50%, -50%);
 }
