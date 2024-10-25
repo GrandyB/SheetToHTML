@@ -22,8 +22,8 @@
     text-shadow: #000 0 calc(4 * .0520833333vw) calc(1 * .0520833333vw)
 }
 #map-container .name {
-    font-size: 30px;
+    font-size: 25px;
 }
 #map-container .label {
-    font-size: 20px;
+    font-size: 18px;
 }
