@@ -1,0 +1,8 @@
+.table-inner img {
+    width: 100%;
+    height: 100%;
+}
+
+.table-inner .flag img {
+    margin-left: 7px;
+}
