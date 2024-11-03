@@ -27,3 +27,7 @@
 #map-container .label {
     font-size: 18px;
 }
+
+.flag img {
+    width: 25px;
+}
