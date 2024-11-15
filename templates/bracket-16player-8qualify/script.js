@@ -23,35 +23,49 @@
 
 function load() {
     var dom = document.getElementById("main");
-  
+
+    let images = getURLParam("images") != null;
+
     var rowAttributes = { height: 51, style: 'font-size: 26px; color: #fff;' };
     var rowLeft = { ...rowAttributes, style: rowAttributes.style + "color: #fff;", alignment: 'flex-center-left'};
     var rowRight = { ...rowAttributes, style: rowAttributes.style + "color: #fff;", alignment: 'flex-center-right'};
     var rowCenter = { ...rowAttributes, style: rowAttributes.style + "color: #fff;", alignment: 'flex-center-center'};
   
+    var imgWidth = 60;
+    var gap = 7;
+
+    var outerNameWidth = images ? 252 : 252 + gap + imgWidth;
+    var innerNameWidth = images ? 295 : 295 + gap + imgWidth;
+
+    // Define with no images
     var leftCols = [
-        { width: 60, image: true, ...rowLeft },
-        { width: 252, ...rowLeft },
+        { width: outerNameWidth, class: 'padding', ...rowLeft },
         { width: 50, ...rowCenter }
     ];
 
     var rightCols = [
         { width: 50, ...rowCenter },
-        { width: 252, ...rowRight },
-        { width: 60, image: true, ...rowRight }
+        { width: outerNameWidth, class: 'padding', ...rowRight },
     ];
 
     var qualifiedLeftCols = [
-        { width: 60, image: true, ...rowLeft },
-        { width: 295, ...rowLeft }
+        { width: innerNameWidth, class: 'padding', ...rowLeft }
     ];
 
     var qualifiedRightCols = [
-        { width: 295, ...rowRight },
-        { width: 60, image: true, ...rowRight }
+        { width: innerNameWidth, class: 'padding', ...rowRight }
     ];
 
+    // Add in image cols if including images
+    if (images) {
+        leftCols.unshift({ width: imgWidth, image: true, ...rowLeft });
+        rightCols.push({ width: imgWidth, image: true, ...rowRight });
+        qualifiedLeftCols.unshift({ width: imgWidth, image: true, ...rowLeft });
+        qualifiedRightCols.push({ width: imgWidth, image: true, ...rowRight });
+    }
+
     function leftSide(cellRef, left, top) {
+        if (!images) cellRef = Helpers.relativeColumn(cellRef, 1);
         matchup(cellRef, left, top, leftCols);
     }
 
@@ -60,17 +74,19 @@ function load() {
     }
 
     function middleLeft(cellRef, left, top) {
-        dom.innerHTML += table(cellRef, 1, { left: left, top: top}, 7, 75, qualifiedLeftCols);
+        if (!images) cellRef = Helpers.relativeColumn(cellRef, 1);
+        dom.innerHTML += table(cellRef, 1, { left: left, top: top}, gap, 75, qualifiedLeftCols);
     }
 
     function middleRight(cellRef, left, top) {
-        dom.innerHTML += table(cellRef, 1, { left: left, top: top}, 7, 75, qualifiedRightCols);
+        dom.innerHTML += table(cellRef, 1, { left: left, top: top}, gap, 75, qualifiedRightCols);
     }
   
     function matchup(cellRef, left, top, cols) {
-        dom.innerHTML += table(cellRef, 2, { left: left, top: top}, 7, 75, cols);
+        dom.innerHTML += table(cellRef, 2, { left: left, top: top}, gap, 75, cols);
     }
   
+    // All cellRefs provided are as if the image link is before the name
     var left = 60;
     leftSide('B2', left, 171);
     leftSide('B5', left, 376);

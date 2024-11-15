@@ -24,6 +24,11 @@
 function load() {
   var dom = document.getElementById("main");
 
+  let thirdPlace = getURLParam("third-place") != null;
+  if (thirdPlace) {
+    document.getElementById("main").classList.add(`third-place`);
+  }
+
   var rowAttributes = { height: 51, class: 'padding', alignment: 'flex-center-center', style: 'font-size: 35px;' };
   var rowName = { ...rowAttributes, style: rowAttributes.style + "color: #fff;"};
   var rowScore = { ...rowAttributes, style: rowAttributes.style + "color: #fff;"};
@@ -51,5 +56,7 @@ function load() {
 
   left = 1300;
   matchup('M8', left, 533);
-  matchup('M12', left, 802);
+  if (thirdPlace) {
+    matchup('M12', left, 802);
+  }
 }

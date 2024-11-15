@@ -1,0 +1,3 @@
+#main:not(.third-place) {
+    transform: translateY(42px);
+}
