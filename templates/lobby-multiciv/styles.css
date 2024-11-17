@@ -1,0 +1,309 @@
+* {
+    --sponsor-height: 0px; /* 60px for MoR */
+
+    --round-info-top: calc(230px + var(--sponsor-height));
+    --round-info-left: 50px;
+    --round-info-font-size: 25px;
+
+    --lobby-info-top: var(--round-info-top);
+    --lobby-info-left: 1290px;
+    --lobby-info-font-size: var(--round-info-font-size);
+
+    --score-color: #ffc532;
+    
+    --games-top: calc(430px + var(--sponsor-height));
+    --game-finished-filter: grayscale(20%) brightness(50%);
+    --game-finished-opacity: 0.9;
+    --highlight-color: rgba(0, 0, 0, 0.85);
+    --highlight-blur: 25px;
+    --highlight-size: 95%;
+    --highlight-animation: less-subtle-expand;
+
+    --text-shadow: var(--strong-text-shadow);
+    --weak-text-shadow: 0px 0px 4px rgba(0,0,0,1);
+    --strong-text-shadow:   1px 1px 2px rgba(0, 0, 0, 1),
+                            3px 3px 4px rgba(0, 0, 0, 0.8),
+                            4px 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+body {
+    width: 1920px;
+    overflow: hidden;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.player {
+    font-size: 45px;
+    color: white;
+    text-shadow: var(--text-shadow);
+}
+.player.name > span {
+    word-wrap: break-word;
+    line-height: 0.8;
+    width: 100%;
+}
+.player.left.name {
+    text-align: right;
+}
+.score {
+    font-size: 70px;
+    color: var(--score-color);
+    text-shadow: var(--text-shadow);
+}
+.player.country img, img.country {
+    width: 100%;
+}
+.player.seed {
+    font-size: 20px;
+    text-shadow: var(--weak-text-shadow);
+}
+
+.map-draft, .civ-draft {
+    display: flex;
+    flex-direction: row;
+}
+.civ-draft {
+    gap: 8px;
+    max-width: 580px;
+}
+.map-draft .map.used, .civ-draft .civ.used {
+    filter: grayscale(30%) brightness(60%);
+    opacity: 0.75;
+}
+.map-draft .map {
+    zoom: 0.9;
+}
+
+.civ {
+    position: relative;
+    height: 100%;
+}
+.civ-img.empty {
+    display: none;
+}
+.civ-win, .civ-ban, .civ-snipe {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.civ-win {
+    height: 20px;
+    top: 0;
+}
+.civ-ban, .civ-snipe {
+    height: 93px;
+    top: calc(50% - 2px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.big-icons :is(.civ-ban, .civ-snipe) {
+    top: calc(50% - 6px);
+    height: 125px;
+}
+
+.game:not(.current) .civ-list.loss .civ {
+    filter: grayscale(20%) brightness(70%);
+}
+:is(.civ-list.loss, .civ.Snipe, .civ.Ban) .civ-win {
+    display: none;
+}
+.civ.Ban .civ-ban, .civ.Snipe .civ-snipe {
+    display: block;
+}
+/* .civ.Ban > .civ-img, .civ.Snipe > .civ-img {
+    filter: grayscale(20%) brightness(70%);
+} */
+.civ-img.empty ~ .civ-ban, .civ-img.empty ~ .civ-snipe {
+    display: none;
+}
+.civ.Pick :is(.civ-ban, .civ-snipe), .civ.Ban .civ-snipe, .civ.Snipe .civ-ban {
+    display: none;
+}
+
+.map {
+    position: relative;
+}
+.map .entry {
+    padding: 6px;
+}
+.map-border-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.map-img {
+    width: 240px;
+}
+.map-name {
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    max-width: 100%;
+    white-space: wrap;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    line-height: 0.9em;
+    font-size: 1.4em;
+    text-shadow: 0px 0px 4px rgba(0,0,0,1);
+}
+
+.games {
+    position: absolute;
+    top: var(--games-top);
+    left: calc(50% - 150px);
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+}
+.game:nth-child(even) {
+    transform: translateY(100px);
+}
+.game:nth-child(odd) {
+    transform: translateY(-100px);
+}
+.game {
+    position: relative;
+    margin: 0 -45px;
+    height: 110px;
+}
+
+/* Adapt for lower best ofs */
+.games-container:is(.maps-3, .maps-4, .maps-5) .games {
+    gap: 50px;
+}
+.games-container:is(.maps-6, .maps-7, .maps-8) .games {
+    gap: 30px;
+}
+
+/* .big-icons .game :is(.left-civ, .right-civ) {
+    top: 45px;
+}
+.game :is(.left-civ, .right-civ) {
+    top: 60px;
+} */
+.civ-list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+}
+.civ-list.left-civs {
+    left: -30px;
+}
+.civ-list.right-civs {
+    right: -30px;
+}
+.big-icons .game .civ-img {
+    height: 65px;
+}
+.game .civ-img {
+    height: 45px;
+}
+
+.games .game.finished .map {
+    filter: var(--game-finished-filter);
+    opacity: var(--game-finished-opacity);
+}
+.games .game:not(.current) .highlight {
+    display: none;
+}
+.games .game.current .highlight {
+    display: block;
+    border-radius: 100%;
+    background-color: var(--highlight-color);
+    filter: blur(var(--highlight-blur));
+    width: var(--highlight-size);
+    height: var(--highlight-size);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    z-index: -1;
+    opacity: 1;
+    animation: flash ease-in-out 1.2s alternate infinite;
+}
+.games .game.current .map-img {
+    animation: var(--highlight-animation) ease-in-out 1.2s alternate infinite;
+}
+
+.current-game {
+    position: absolute;
+    top: 525px;
+    left: calc(50% - 150px);
+    transform: translate(-50%, -50%) scale(2.5);
+    display: flex;
+    flex-direction: row;
+}
+#main.cams-3 .current-game {
+    display: none;
+}
+
+#lobby-info {
+    width: 400px;
+    position: absolute;
+    top: var(--lobby-info-top);
+    left: var(--lobby-info-left);
+    font-size: var(--lobby-info-font-size);
+    transform: translate(-50%, 0);
+    color: white;
+    text-shadow: var(--text-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 1.2;
+}
+#timer-output {
+    font-size: 50px;
+}
+
+.round-info {
+    position: absolute;
+    top: var(--round-info-top);
+    left: var(--round-info-left);
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 400px);
+    justify-content: center;
+    align-items: center;
+    font-size: var(--round-info-font-size);
+    color: white;
+    gap: 5px;
+}
+.round-info > div {
+    height: 30px;
+    text-shadow: var(--text-shadow);
+}
+
+.talent {
+    font-size: 20px;
+    color: white;
+    text-shadow: var(--text-shadow);
+}
+
+.team-players {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 25px;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.team-players.left {
+    justify-content: flex-end;
+}
+.team-player-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    color: #fff;
+    font-size: 20px;
+    text-shadow: var(--weak-text-shadow);
+}
+.team-player-container img {
+    width: 20px;
+}

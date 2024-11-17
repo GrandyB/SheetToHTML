@@ -52,6 +52,17 @@ class Helpers {
     return column + newRow;
   }
 
+  /**
+   * @param cellReference {string} a Google Sheet cell reference, e.g. "G4"
+   * @param offsetRow {number} the number of rows to shift e.g. 1
+   * @param offsetCol {number} the number of columns to shift e.g. 3
+   * @return {string} a new cell reference, e.g. "J5" (using example parameters above)
+   */
+  static relativeRowThenColumn(cellReference, offsetRow, offsetCol) {
+    if (offsetRow == 0 && offsetCol == 0) return cellReference;
+    return this.relativeColumn(this.relativeRow(cellReference, offsetRow), offsetCol);
+  }
+
   // // Helper function to convert column indices to letters
   static indexToColumn(column) {
     var temp, letter = '';
