@@ -8,3 +8,7 @@
 .flex-center-right img {
     margin-right: 20px;
 }
+
+.table-inner .padding {
+    line-height: 0.85;
+}
