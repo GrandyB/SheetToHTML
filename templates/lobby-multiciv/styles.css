@@ -34,7 +34,7 @@ body {
 }
 
 .player {
-    font-size: 40px;
+    font-size: 36px;
     color: white;
     text-shadow: var(--text-shadow);
 }
