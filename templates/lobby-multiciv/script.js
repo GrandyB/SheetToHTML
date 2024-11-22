@@ -138,12 +138,12 @@ function load() {
     html += partialBoxCentered({ class: 'player left country', style: `left: 10px; top: 8px; width: 275px; opacity: 0.2;`, content: '<img id="C1" />'});
     html += partialBoxCentered({ class: 'player right country', style: `left: 1310px; top: 8px; width: 275px; opacity: 0.2`, content: '<img id="C2" />'});
 
-    html += partialBoxRight({ class: 'player left name', style: `left: 20px; top: 64px; width: 470px; height: 90px;`, content: '<span id="B1"></span>'});
+    html += partialBoxRight({ class: 'player left name', style: `left: 10px; top: 64px; width: 480px; height: 90px;`, content: '<span id="B1"></span>'});
     html += partialBoxRight({ class: 'player left seed', style: `left: 20px; top: 30px; width: 470px; height: 90px;`, content: '<span id="B4"></span>'});
     html += partialBoxCentered({ class: 'player left country', style: `left: 500px; top: 60px; width: 75px;`, content: '<img id="C1" />'});
     html += partialBoxCentered({ class: 'player left score', style: `left: 621px; top: 72px; width: 90px; height: 90px;`, content: '<span id="D1"></span>'});
     html += partialBoxCentered({ class: 'player right score', style: `left: 908px; top: 72px; width: 90px; height: 90px;`, content: '<span id="D2"></span>'});
-    html += partialBoxLeft({ class: 'player right name', style: `left: 1122px; top: 64px; width: 470px; height: 90px;`, content: '<span id="B2"></span>'});
+    html += partialBoxLeft({ class: 'player right name', style: `left: 1122px; top: 64px; width: 480px; height: 90px;`, content: '<span id="B2"></span>'});
     html += partialBoxLeft({ class: 'player right seed', style: `left: 1122px; top: 30px; width: 470px; height: 90px;`, content: '<span id="B5"></span>'});
     html += partialBoxCentered({ class: 'player right country', style: `left: 1035px; top: 60px; width: 75px;`, content: '<img id="C2" />'});
 

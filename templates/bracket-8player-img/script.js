@@ -29,7 +29,7 @@ function load() {
     document.getElementById("main").classList.add(`third-place`);
   }
 
-  var rowAttributes = { height: 51, class: 'padding', alignment: 'flex-center-center', style: 'font-size: 35px;' };
+  var rowAttributes = { height: 51, class: 'padding', alignment: 'flex-center-center', style: 'font-size: 30px;' };
   var rowName = { ...rowAttributes, style: rowAttributes.style + "color: #fff;"};
   var rowScore = { ...rowAttributes, style: rowAttributes.style + "color: #fff;"};
   var rowImage = { ...rowAttributes, class: "image", alignment: 'flex-center-center', image: true};
