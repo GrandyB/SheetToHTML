@@ -42,6 +42,9 @@ function load() {
     if (getURLParam("big-icons") != null) {
         document.getElementById("main").classList.add(`big-icons`);
     }
+    if (getURLParam("medium-icons") != null) {
+        document.getElementById("main").classList.add(`medium-icons`);
+    }
 
     Handlebars.registerPartial("map", `
         <div class="map" requires-non-empty="{{nameRef}}" apply-as-classes="{{classesRef}}">

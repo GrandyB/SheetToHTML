@@ -132,6 +132,9 @@ body {
 .big-icons .civ-img {
     height: 90px;
 }
+.medium-icons .civ-img {
+    height: 66px;
+}
 .civ-img {
     height: 45px;
     width: auto;
@@ -155,6 +158,10 @@ body {
 .big-icons :is(.civ-ban, .civ-snipe) {
     top: calc(50% - 6px);
     height: 125px;
+}
+.medium-icons :is(.civ-ban, .civ-snipe) {
+    top: calc(50% - 4px);
+    height: 85px;
 }
 
 .game:not(.current) .left-civ.loss, .game:not(.current) .right-civ.loss  {
@@ -226,6 +233,9 @@ body {
 .big-icons .game :is(.left-civ, .right-civ) {
     top: 45px;
 }
+.medium-icons .game :is(.left-civ, .right-civ) {
+    top: 45px;
+}
 .game :is(.left-civ, .right-civ) {
     top: 60px;
 }
@@ -243,6 +253,9 @@ body {
 }
 .big-icons .game .civ-img {
     height: 75px;
+}
+.medium-icons .game .civ-img {
+    height: 70px;
 }
 .game .civ-img {
     height: 55px;
